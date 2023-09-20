@@ -13,20 +13,49 @@
   </head>
 
   <body>
-
-    <canvas id="canvasOne"></canvas>
+    <canvas id="canvasOne" width="500" height="500"></canvas>
 
     <script type="text/javascript">
+
+const canvas = document.getElementById("canvasOne");
+const ctx = canvas.getContext("2d");
+
 		// Gets a handle to the element with id canvasOne.
-		
-		// Set the canvas up for drawing in 2D.
-		
-		// Set the fill colour to bright red.
+		ctx.font = "20px Arial";
+    ctx.fillText("Hello, it's Ivona", 10, 20);
 		
 		// Create a filled rectangle 
-		
+    // Set the fill colour to bright red.
+    ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+    // Set the canvas up for drawing in 2D.
+    ctx.fillRect(20, 20, 150, 100);
 	  
-		
+		// Create a second rectangle 
+    // Set the fill colour to bright red.
+    ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+    // Set the canvas up for drawing in 2D.
+    ctx.fillRect(50, 50, 150, 100);
+
+      //CIRCLES
+      ctx.beginPath();
+      ctx.arc(200, 150, 40, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+      ctx.fill();
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.arc(240, 190, 40, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+      ctx.fill();
+      ctx.stroke();
+
+      //SEMI CIRLE
+      ctx.beginPath();
+      ctx.arc(280, 230, 40, 0, Math.PI);
+      ctx.fillStyle = "rgba(0, 255, 255, 0.5)";
+      ctx.fill();
+      ctx.stroke();
+
     </script>
 
   </body>
