@@ -32,7 +32,7 @@
       
       // The vertical location of the ball.
       var y = 10;
-      var ySpeed = 1;
+      var ySpeed = 5;
       // A function to repeat every time the animation loops.
       function repeatme() {
         //clear the entire canvas
@@ -45,9 +45,14 @@
         // Update the y location.
         y += ySpeed;
 
-        //if statement for going up
+        //if statements for changing y
         if(y>=145){
-          ySpeed = 0;
+          console.log("PING The ball hit the bottom edge");
+          ySpeed = ySpeed * - 1;
+        }
+        if(y<=5){
+          console.log("PONG The ball hit the top edge");
+          ySpeed = ySpeed * - 1;
         }
         
         window.requestAnimationFrame(repeatme);
