@@ -32,6 +32,7 @@
       
       // The vertical location of the ball.
       var y = 10;
+      var ySpeed = 1;
       // A function to repeat every time the animation loops.
       function repeatme() {
         //clear the entire canvas
@@ -42,7 +43,12 @@
         ctx.stroke();
         
         // Update the y location.
-        y += 1;
+        y += ySpeed;
+
+        //if statement for going up
+        if(y>=145){
+          ySpeed = 0;
+        }
         
         window.requestAnimationFrame(repeatme);
       }
