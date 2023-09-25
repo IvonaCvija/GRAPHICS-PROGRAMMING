@@ -12,6 +12,7 @@
       body {
           background-color: white;
       }
+      /*add border of canvas*/
       canvas{
         border: black 3px solid;
       }
@@ -33,9 +34,11 @@
       var y = 10;
       // A function to repeat every time the animation loops.
       function repeatme() {
+        //clear the entire canvas
+        ctx.clearRect(0, 0, 300, 150);
         // Draw the ball (stroked, not filled).
         ctx.beginPath();
-        ctx.arc(50, y, 3, 0, 2 * Math.PI);
+        ctx.arc(50, y, 5, 0, 2 * Math.PI);
         ctx.stroke();
         
         // Update the y location.
