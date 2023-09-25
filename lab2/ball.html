@@ -27,6 +27,7 @@
     <script type="text/javascript">
       //create class Ball
       class Ball{
+        //create constructor
         constructor(x,y,r,xSpeed,ySpeed){
           this.x=x;
           this.y=y;
@@ -34,22 +35,23 @@
           this.xSpeed=xSpeed;
           this.ySpeed=ySpeed;
         }
+        //draw method for creating the ball
         draw(){
-          //clear the entire canvas
+        //clear the entire canvas
         ctx.clearRect(0, 0, 300, 150);
-        // Draw the ball (stroked, not filled).
+        //draw the ball (stroked, not filled).
         ctx.beginPath();
         ctx.arc(this.x, this.y, 5, 0, 2 * Math.PI);
         ctx.stroke();
         }
+        //move method for moving the ball
         move(){
-        // The vertical location of the ball.
+        //change x and y to move the ball.
           this.y += this.ySpeed;
           this.x += this.xSpeed;
-        
         }
         changeDirection(){
-          //if statements for changing y
+        //change direction when the ball reaches the edge
         if(this.y>=145){
         console.log("PING The ball hit the bottom edge");
         this.ySpeed = this.ySpeed * - 1;
@@ -78,7 +80,7 @@
       
       // A function to repeat every time the animation loops.
       function repeatme() {
-        //call method draw
+        //call methods
         b1.draw();
         b1.move();
         b1.changeDirection();        
