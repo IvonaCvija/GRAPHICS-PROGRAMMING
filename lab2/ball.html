@@ -44,8 +44,8 @@
         }
         move(){
         // The vertical location of the ball.
-        this.y += this.ySpeed;
-
+          this.y += this.ySpeed;
+          this.x += this.xSpeed;
         
         }
         changeDirection(){
@@ -57,6 +57,14 @@
         if(this.y<=5){
         console.log("PONG The ball hit the top edge");
         this.ySpeed = this.ySpeed * - 1;
+        }
+        if(this.x>=295){
+        console.log("PONG The ball hit the right edge");
+        this.xSpeed = this.xSpeed * - 1;
+        }
+        if(this.x<=5){
+        console.log("PONG The ball hit the left edge");
+        this.xSpeed = this.xSpeed * - 1;
         }
         }
       }
