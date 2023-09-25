@@ -27,42 +27,50 @@
     <script type="text/javascript">
       //create class Ball
       class Ball{
-        constructor(x,y,r,xSpeed,ySpeed){}
-        draw(x,y,r,xSpeed,ySpeed){}
-        move(x,y,r,xSpeed,ySpeed){}
-      }
+        constructor(x,y,r,xSpeed,ySpeed){
+          this.x=x;
+          this.y=y;
+          this.r=r;
+          this.xSpeed=xSpeed;
+          this.ySpeed=ySpeed;
+        }
+        draw(){
+          //clear the entire canvas
+        ctx.clearRect(0, 0, 300, 150);
+        // Draw the ball (stroked, not filled).
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 5, 0, 2 * Math.PI);
+        ctx.stroke();
+        }
+        move(){
+        // The vertical location of the ball.
+        this.y += this.ySpeed;
 
+        //if statements for changing y
+        if(this.y>=145){
+        console.log("PING The ball hit the bottom edge");
+        this.ySpeed = this.ySpeed * - 1;
+        }
+        if(this.y<=5){
+        console.log("PONG The ball hit the top edge");
+        this.ySpeed = this.ySpeed * - 1;
+}
+        }
+      }
+        
+      b1 = new Ball(20, 20, 5, 3, 3);
 
       // Gets a handle to the element with id canvasOne.
       var canvas = document.getElementById("canvas-for-ball");
       // Get a 2D context for the canvas.
       var ctx = canvas.getContext("2d");
       
-      // The vertical location of the ball.
-      var y = 10;
-      var ySpeed = 5;
       // A function to repeat every time the animation loops.
       function repeatme() {
-        //clear the entire canvas
-        ctx.clearRect(0, 0, 300, 150);
-        // Draw the ball (stroked, not filled).
-        ctx.beginPath();
-        ctx.arc(50, y, 5, 0, 2 * Math.PI);
-        ctx.stroke();
-        
-        // Update the y location.
-        y += ySpeed;
-
-        //if statements for changing y
-        if(y>=145){
-          console.log("PING The ball hit the bottom edge");
-          ySpeed = ySpeed * - 1;
-        }
-        if(y<=5){
-          console.log("PONG The ball hit the top edge");
-          ySpeed = ySpeed * - 1;
-        }
-        
+        //call method draw
+        b1.draw();
+        b1.move();
+                
         window.requestAnimationFrame(repeatme);
       }
       
