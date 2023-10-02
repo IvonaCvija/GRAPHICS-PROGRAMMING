@@ -21,8 +21,8 @@ const canvas = document.getElementById("canvasOne");
 const ctx = canvas.getContext("2d");
 
 		// Gets a handle to the element with id canvasOne.
-		ctx.font = "20px Arial";
-    ctx.fillText("Hello, it's Ivona", 10, 20);
+		ctx.font = "18px Arial";
+    ctx.fillText("Hello, it's Ivona", 10, 15);
 		
 		// Create a filled rectangle 
     // Set the fill colour to bright red.
@@ -47,6 +47,7 @@ const ctx = canvas.getContext("2d");
       ctx.arc(240, 190, 40, 0, 2 * Math.PI);
       ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
       ctx.fill();
+      ctx.strokeStyle = "red";
       ctx.stroke();
 
       //SEMI CIRLE
@@ -54,6 +55,7 @@ const ctx = canvas.getContext("2d");
       ctx.arc(280, 230, 40, 0, Math.PI);
       ctx.fillStyle = "rgba(0, 255, 255, 0.5)";
       ctx.fill();
+      ctx.strokeStyle = "pink";
       ctx.stroke();
 
     </script>
