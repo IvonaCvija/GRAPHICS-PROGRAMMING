@@ -44,8 +44,10 @@
         ctx.arc(mouse.x, mouse.y, 6, 0, 2 * Math.PI);
         ctx.fill();
         
-        console.log("Local coordinates: "+ canvasPosition.x, canvasPosition.y);
+        //
+        console.log("Local/Canvas coordinates: "+ canvasPosition.x, canvasPosition.y);
         console.log("Global coordinates: "+ event.clientX, event.clientY);
+        console.log("Mouse coordinates: "+ mouse.x, mouse.y);
 
         noClicks += 1;
         console.log(noClicks);
