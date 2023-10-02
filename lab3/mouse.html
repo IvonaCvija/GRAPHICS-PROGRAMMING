@@ -28,10 +28,10 @@
       var ctx = canvas.getContext("2d");
       // Make the fill style red.
       ctx.fillStyle = "rgb(255, 0, 0)";
-      
+      // local coordinates, set x and y where it's clicked
       var canvasPosition = {
-        y: canvas.offSetTop,
-        x: canvas.offSetLeft
+        y: canvas.offsetTop,
+        x: canvas.offsetLeft
       }
 
       canvas.addEventListener("click", function(event) { 
@@ -39,6 +39,8 @@
         ctx.arc(event.clientX, event.clientY, 6, 0, 2 * Math.PI);
         ctx.fill();
         
+        console.log("Local coordinates: "+ canvasPosition.x, canvasPosition.y);
+
         noClicks += 1;
         console.log(noClicks);
       });
