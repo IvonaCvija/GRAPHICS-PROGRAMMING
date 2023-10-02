@@ -35,11 +35,17 @@
       }
 
       canvas.addEventListener("click", function(event) { 
+        //
+        var mouse = {
+          x:event.clientX-canvasPosition.x,
+          y:event.clientY-canvasPosition.y
+        }
         ctx.beginPath();
-        ctx.arc(event.clientX, event.clientY, 6, 0, 2 * Math.PI);
+        ctx.arc(mouse.x, mouse.y, 6, 0, 2 * Math.PI);
         ctx.fill();
         
         console.log("Local coordinates: "+ canvasPosition.x, canvasPosition.y);
+        console.log("Global coordinates: "+ event.clientX, event.clientY);
 
         noClicks += 1;
         console.log(noClicks);
