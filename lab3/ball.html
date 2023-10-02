@@ -70,6 +70,10 @@
         }
         }
       }
+
+      class Paddle{
+        
+      }
         
       b1 = new Ball(20, 20, 5, 3, 3);
 
@@ -95,12 +99,12 @@
 		$(document.body).on('keydown', function(e) {
 			console.log(e.which);
 			switch (e.which) {
-			// key code for left arrow
+			// key code for up arrow
 			case 37:
 				console.log('up arrow key pressed!');
 				break;
 
-			// key code for right arrow
+			// key code for down arrow
 			case 39:
 				console.log('down arrow key pressed!');
 				break;
