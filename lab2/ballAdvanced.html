@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html>
@@ -42,6 +43,27 @@
         //draw the ball (stroked, not filled).
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+        ctx.stroke();
+        //drawing the X
+        var xEdge = Math.cos(7*(Math.PI)/4) * this.r + this.x;
+        var yEdge = Math.sin(7*(Math.PI)/4) * this.r + this.y;
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(xEdge, yEdge);
+        ctx.stroke();
+        var xEdge = Math.cos(5*(Math.PI)/4) * this.r + this.x;
+        var yEdge = Math.sin(5*(Math.PI)/4) * this.r + this.y;
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(xEdge, yEdge);
+        ctx.stroke();
+        var xEdge = Math.cos(3*(Math.PI)/4) * this.r + this.x;
+        var yEdge = Math.sin(3*(Math.PI)/4) * this.r + this.y;
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(xEdge, yEdge);
+        ctx.stroke();
+        var xEdge = Math.cos(Math.PI/4) * this.r + this.x;
+        var yEdge = Math.sin(Math.PI/4) * this.r + this.y;
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(xEdge, yEdge);
         ctx.stroke();
         }
         //move method for moving the ball
