@@ -28,7 +28,7 @@
     <script type="text/javascript">
       //create class Ball
       class Ball{
-        //create constructor
+      //create constructor
         constructor(x,y,r,xSpeed,ySpeed){
           this.x=x;
           this.y=y;
@@ -45,7 +45,7 @@
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         ctx.stroke();
         //drawing the X
-        var xEdge = Math.cos(7*(Math.PI)/4) * this.r + this.x;
+        /*var xEdge = Math.cos(7*(Math.PI)/4) * this.r + this.x;
         var yEdge = Math.sin(7*(Math.PI)/4) * this.r + this.y;
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(xEdge, yEdge);
@@ -64,6 +64,15 @@
         var yEdge = Math.sin(Math.PI/4) * this.r + this.y;
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(xEdge, yEdge);
+        ctx.stroke();*/
+
+        //Drawing an X
+        var xEdge, yEdge;
+        ctx.moveTo(Math.cos(Math.PI/4) * this.r + this.x, Math.sin(Math.PI/4) * this.r + this.y);
+        ctx.lineTo(Math.cos(5*(Math.PI)/4) * this.r + this.x, yEdge = Math.sin(5*(Math.PI)/4) * this.r + this.y);
+        ctx.stroke();
+        ctx.moveTo(Math.cos(7*(Math.PI)/4) * this.r + this.x, Math.sin(7*(Math.PI)/4) * this.r + this.y);
+        ctx.lineTo(Math.cos(3*(Math.PI)/4) * this.r + this.x, Math.sin(3*(Math.PI)/4) * this.r + this.y);
         ctx.stroke();
         }
         //move method for moving the ball
@@ -92,7 +101,7 @@
         }
         }
       }
-        
+      //adding an object
       b1 = new Ball(20, 20, 10, 1, 1);
 
       // Gets a handle to the element with id canvasOne.
@@ -102,7 +111,7 @@
       
       // A function to repeat every time the animation loops.
       function repeatme() {
-        //call methods
+      //call methods
         b1.draw();
         b1.move();
         b1.changeDirection();        
