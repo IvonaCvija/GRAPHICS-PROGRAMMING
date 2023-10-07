@@ -74,19 +74,19 @@
         }
         changeDirection(){
         //change direction when the ball reaches the edge
-        if(this.y>=145){
+        if(this.y>=150-this.r){
         console.log("PING The ball hit the bottom edge");
         this.ySpeed = this.ySpeed * - 1;
         }
-        if(this.y<=5){
+        if(this.y<=this.r){
         console.log("PONG The ball hit the top edge");
         this.ySpeed = this.ySpeed * - 1;
         }
-        if(this.x>=295){
+        if(this.x>=300-this.r){
         console.log("PONG The ball hit the right edge");
         this.xSpeed = this.xSpeed * - 1;
         }
-        if(this.x<=5){
+        if(this.x<=this.r){
         console.log("PONG The ball hit the left edge");
         this.xSpeed = this.xSpeed * - 1;
         }
