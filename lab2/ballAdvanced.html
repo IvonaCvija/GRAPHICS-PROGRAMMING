@@ -74,22 +74,22 @@
         //change direction of the rotation when the ball reaches the edge
         if (this.y >= 150 - this.r) {
           console.log("PING The ball hit the bottom edge");
-          this.angle = this.angle * (-1);
+          this.angle = this.angle * -1;
           this.rotationSpeed = this.rotationSpeed * -1;
         }
         if (this.y <= this.r) {
           console.log("PONG The ball hit the top edge");
-          this.angle = this.angle * (-1);
+          this.angle = this.angle * -1;
           this.rotationSpeed = this.rotationSpeed * -1;
         }
         if (this.x >= 300 - this.r) {
           console.log("PONG The ball hit the right edge");
-          this.angle = this.angle * (-1);
+          this.angle = this.angle * -1;
           this.rotationSpeed = this.rotationSpeed * -1;
         }
         if (this.x <= this.r) {
           console.log("PONG The ball hit the left edge");
-          this.angle = this.angle * (-1);
+          this.angle = this.angle * -1;
           this.rotationSpeed = this.rotationSpeed * -1;
         }
       }
