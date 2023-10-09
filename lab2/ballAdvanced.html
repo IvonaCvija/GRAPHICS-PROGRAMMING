@@ -28,12 +28,13 @@
     //create class Ball
     class Ball {
       //create constructor
-      constructor(x, y, r, xSpeed, ySpeed) {
+      constructor(x, y, r, xSpeed, ySpeed, angle) {
         this.x = x;
         this.y = y;
         this.r = r;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        this.angle = angle;
       }
       //draw method for creating the ball
       draw() {
@@ -47,11 +48,16 @@
       }
       drawX() {
         //drawing the X
-        ctx.moveTo(Math.cos(Math.PI / 4) * this.r + this.x, Math.sin(Math.PI / 4) * this.r + this.y);
-        ctx.lineTo(Math.cos(5 * (Math.PI) / 4) * this.r + this.x, Math.sin(5 * (Math.PI) / 4) * this.r + this.y);
+        var point1 = Math.PI / 4;
+        var point2 = 5 * (Math.PI) / 4;
+        var point3 = 7 * (Math.PI) / 4;
+        var point4 = 3 * (Math.PI) / 4;
+        this.angle = this.angle + 0.1;
+        ctx.moveTo(Math.cos(point1+this.angle) * this.r + this.x, Math.sin(point1+this.angle) * this.r + this.y);
+        ctx.lineTo(Math.cos(point2+this.angle) * this.r + this.x, Math.sin(point2+this.angle) * this.r + this.y);
         ctx.stroke();
-        ctx.moveTo(Math.cos(7 * (Math.PI) / 4) * this.r + this.x, Math.sin(7 * (Math.PI) / 4) * this.r + this.y);
-        ctx.lineTo(Math.cos(3 * (Math.PI) / 4) * this.r + this.x, Math.sin(3 * (Math.PI) / 4) * this.r + this.y);
+        ctx.moveTo(Math.cos(point3+this.angle) * this.r + this.x, Math.sin(point3+this.angle) * this.r + this.y);
+        ctx.lineTo(Math.cos(point4+this.angle) * this.r + this.x, Math.sin(point4+this.angle) * this.r + this.y);
         ctx.stroke();
       }
       //move method for moving the ball
@@ -81,7 +87,7 @@
       }
     }
     //adding an object
-    b1 = new Ball(20, 20, 10, 1, 1);
+    b1 = new Ball(20, 20, 10, 1, 1, 0.1);
 
     // Gets a handle to the element with id canvasOne.
     var canvas = document.getElementById("canvas-for-ball");
