@@ -52,7 +52,7 @@
         var point2 = 5 * (Math.PI) / 4;
         var point3 = 7 * (Math.PI) / 4;
         var point4 = 3 * (Math.PI) / 4;
-        this.angle = this.angle + 0.1;
+        this.angle = this.angle + 0.01;
         ctx.moveTo(Math.cos(point1+this.angle) * this.r + this.x, Math.sin(point1+this.angle) * this.r + this.y);
         ctx.lineTo(Math.cos(point2+this.angle) * this.r + this.x, Math.sin(point2+this.angle) * this.r + this.y);
         ctx.stroke();
@@ -87,7 +87,7 @@
       }
     }
     //adding an object
-    b1 = new Ball(20, 20, 10, 1, 1, 0.1);
+    b1 = new Ball(20, 20, 10, 0.5, 0.5, 0.01);
 
     // Gets a handle to the element with id canvasOne.
     var canvas = document.getElementById("canvas-for-ball");
