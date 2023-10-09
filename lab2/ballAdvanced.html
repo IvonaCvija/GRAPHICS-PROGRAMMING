@@ -1,43 +1,42 @@
-
-
 <!DOCTYPE html>
 
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Canvas</title>
-    <h1>Ivona Cvija</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <h1>Ivona Cvija</h1>
 
-    <style type="text/css">
-      body {
-          background-color: white;
-      }
-      /*add border of canvas*/
-      canvas{
-        border: black 3px solid;
-      }
-    </style>
+  <style type="text/css">
+    body {
+      background-color: white;
+    }
 
-  </head>
+    /*add border of canvas*/
+    canvas {
+      border: black 3px solid;
+    }
+  </style>
 
-  <body>
+</head>
 
-    <canvas id="canvas-for-ball"></canvas>
+<body>
 
-    <script type="text/javascript">
-      //create class Ball
-      class Ball{
+  <canvas id="canvas-for-ball"></canvas>
+
+  <script type="text/javascript">
+    //create class Ball
+    class Ball {
       //create constructor
-        constructor(x,y,r,xSpeed,ySpeed){
-          this.x=x;
-          this.y=y;
-          this.r=r;
-          this.xSpeed=xSpeed;
-          this.ySpeed=ySpeed;
-        }
-        //draw method for creating the ball
-        draw(){
+      constructor(x, y, r, xSpeed, ySpeed) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+      }
+      //draw method for creating the ball
+      draw() {
         //clear the entire canvas
         ctx.clearRect(0, 0, 300, 150);
         //draw the ball (stroked, not filled).
@@ -45,83 +44,60 @@
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         ctx.stroke();
         //drawing the X
-        /*var xEdge = Math.cos(7*(Math.PI)/4) * this.r + this.x;
-        var yEdge = Math.sin(7*(Math.PI)/4) * this.r + this.y;
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(xEdge, yEdge);
+        ctx.moveTo(Math.cos(Math.PI / 4) * this.r + this.x, Math.sin(Math.PI / 4) * this.r + this.y);
+        ctx.lineTo(Math.cos(5 * (Math.PI) / 4) * this.r + this.x, Math.sin(5 * (Math.PI) / 4) * this.r + this.y);
         ctx.stroke();
-        var xEdge = Math.cos(5*(Math.PI)/4) * this.r + this.x;
-        var yEdge = Math.sin(5*(Math.PI)/4) * this.r + this.y;
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(xEdge, yEdge);
+        ctx.moveTo(Math.cos(7 * (Math.PI) / 4) * this.r + this.x, Math.sin(7 * (Math.PI) / 4) * this.r + this.y);
+        ctx.lineTo(Math.cos(3 * (Math.PI) / 4) * this.r + this.x, Math.sin(3 * (Math.PI) / 4) * this.r + this.y);
         ctx.stroke();
-        var xEdge = Math.cos(3*(Math.PI)/4) * this.r + this.x;
-        var yEdge = Math.sin(3*(Math.PI)/4) * this.r + this.y;
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(xEdge, yEdge);
-        ctx.stroke();
-        var xEdge = Math.cos(Math.PI/4) * this.r + this.x;
-        var yEdge = Math.sin(Math.PI/4) * this.r + this.y;
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(xEdge, yEdge);
-        ctx.stroke();*/
-
-        //Drawing an X
-        var xEdge, yEdge;
-        ctx.moveTo(Math.cos(Math.PI/4) * this.r + this.x, Math.sin(Math.PI/4) * this.r + this.y);
-        ctx.lineTo(Math.cos(5*(Math.PI)/4) * this.r + this.x, yEdge = Math.sin(5*(Math.PI)/4) * this.r + this.y);
-        ctx.stroke();
-        ctx.moveTo(Math.cos(7*(Math.PI)/4) * this.r + this.x, Math.sin(7*(Math.PI)/4) * this.r + this.y);
-        ctx.lineTo(Math.cos(3*(Math.PI)/4) * this.r + this.x, Math.sin(3*(Math.PI)/4) * this.r + this.y);
-        ctx.stroke();
-        }
-        //move method for moving the ball
-        move(){
+      }
+      //move method for moving the ball
+      move() {
         //change x and y to move the ball.
-          this.y += this.ySpeed;
-          this.x += this.xSpeed;
-        }
-        changeDirection(){
+        this.y += this.ySpeed;
+        this.x += this.xSpeed;
+      }
+      changeDirection() {
         //change direction when the ball reaches the edge
-        if(this.y>=150-this.r){
-        console.log("PING The ball hit the bottom edge");
-        this.ySpeed = this.ySpeed * - 1;
+        if (this.y >= 150 - this.r) {
+          console.log("PING The ball hit the bottom edge");
+          this.ySpeed = this.ySpeed * - 1;
         }
-        if(this.y<=this.r){
-        console.log("PONG The ball hit the top edge");
-        this.ySpeed = this.ySpeed * - 1;
+        if (this.y <= this.r) {
+          console.log("PONG The ball hit the top edge");
+          this.ySpeed = this.ySpeed * - 1;
         }
-        if(this.x>=300-this.r){
-        console.log("PONG The ball hit the right edge");
-        this.xSpeed = this.xSpeed * - 1;
+        if (this.x >= 300 - this.r) {
+          console.log("PONG The ball hit the right edge");
+          this.xSpeed = this.xSpeed * - 1;
         }
-        if(this.x<=this.r){
-        console.log("PONG The ball hit the left edge");
-        this.xSpeed = this.xSpeed * - 1;
-        }
+        if (this.x <= this.r) {
+          console.log("PONG The ball hit the left edge");
+          this.xSpeed = this.xSpeed * - 1;
         }
       }
-      //adding an object
-      b1 = new Ball(20, 20, 10, 1, 1);
+    }
+    //adding an object
+    b1 = new Ball(20, 20, 10, 1, 1);
 
-      // Gets a handle to the element with id canvasOne.
-      var canvas = document.getElementById("canvas-for-ball");
-      // Get a 2D context for the canvas.
-      var ctx = canvas.getContext("2d");
-      
-      // A function to repeat every time the animation loops.
-      function repeatme() {
+    // Gets a handle to the element with id canvasOne.
+    var canvas = document.getElementById("canvas-for-ball");
+    // Get a 2D context for the canvas.
+    var ctx = canvas.getContext("2d");
+
+    // A function to repeat every time the animation loops.
+    function repeatme() {
       //call methods
-        b1.draw();
-        b1.move();
-        b1.changeDirection();        
-        window.requestAnimationFrame(repeatme);
-      }
-      
-      // Get the animation going.
-      repeatme();
-    </script>
+      b1.draw();
+      b1.move();
+      b1.changeDirection();
+      window.requestAnimationFrame(repeatme);
+    }
 
-  </body>
+    // Get the animation going.
+    repeatme();
+  </script>
+
+</body>
 
 </html>
