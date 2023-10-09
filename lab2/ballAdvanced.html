@@ -28,13 +28,14 @@
     //create class Ball
     class Ball {
       //create constructor
-      constructor(x, y, r, xSpeed, ySpeed, angle) {
+      constructor(x, y, r, xSpeed, ySpeed, angle, rotationSpeed) {
         this.x = x;
         this.y = y;
         this.r = r;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
         this.angle = angle;
+        this.rotationSpeed = rotationSpeed;
       }
       //draw method for creating the ball
       draw() {
@@ -52,7 +53,7 @@
         var point2 = 5 * (Math.PI) / 4;
         var point3 = 7 * (Math.PI) / 4;
         var point4 = 3 * (Math.PI) / 4;
-        this.angle = this.angle + 0.01;
+        this.angle = this.angle + this.rotationSpeed;
         ctx.moveTo(Math.cos(point1+this.angle) * this.r + this.x, Math.sin(point1+this.angle) * this.r + this.y);
         ctx.lineTo(Math.cos(point2+this.angle) * this.r + this.x, Math.sin(point2+this.angle) * this.r + this.y);
         ctx.stroke();
@@ -65,6 +66,29 @@
         //change x and y to move the ball.
         this.y += this.ySpeed;
         this.x += this.xSpeed;
+      }
+      changeRotationDirection(){
+        //change angle to opposite
+        if (this.y >= 150 - this.r) {
+          console.log("PING The ball hit the bottom edge");
+          this.angle = this.angle * (-1);
+          this.rotationSpeed = this.rotationSpeed * -1;
+        }
+        if (this.y <= this.r) {
+          console.log("PONG The ball hit the top edge");
+          this.angle = this.angle * (-1);
+          this.rotationSpeed = this.rotationSpeed * -1;
+        }
+        if (this.x >= 300 - this.r) {
+          console.log("PONG The ball hit the right edge");
+          this.angle = this.angle * (-1);
+          this.rotationSpeed = this.rotationSpeed * -1;
+        }
+        if (this.x <= this.r) {
+          console.log("PONG The ball hit the left edge");
+          this.angle = this.angle * (-1);
+          this.rotationSpeed = this.rotationSpeed * -1;
+        }
       }
       changeDirection() {
         //change direction when the ball reaches the edge
@@ -87,7 +111,7 @@
       }
     }
     //adding an object
-    b1 = new Ball(20, 20, 10, 0.5, 0.5, 0.01);
+    b1 = new Ball(20, 20, 10, 0.5, 0.5, 0.01, 0.01);
 
     // Gets a handle to the element with id canvasOne.
     var canvas = document.getElementById("canvas-for-ball");
@@ -100,6 +124,7 @@
       b1.draw();
       b1.drawX();
       b1.move();
+      b1.changeRotationDirection();
       b1.changeDirection();
       window.requestAnimationFrame(repeatme);
     }
