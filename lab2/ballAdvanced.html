@@ -43,6 +43,9 @@
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         ctx.stroke();
+
+      }
+      drawX() {
         //drawing the X
         ctx.moveTo(Math.cos(Math.PI / 4) * this.r + this.x, Math.sin(Math.PI / 4) * this.r + this.y);
         ctx.lineTo(Math.cos(5 * (Math.PI) / 4) * this.r + this.x, Math.sin(5 * (Math.PI) / 4) * this.r + this.y);
@@ -89,6 +92,7 @@
     function repeatme() {
       //call methods
       b1.draw();
+      b1.drawX();
       b1.move();
       b1.changeDirection();
       window.requestAnimationFrame(repeatme);
