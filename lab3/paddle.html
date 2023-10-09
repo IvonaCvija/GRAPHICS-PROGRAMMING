@@ -34,7 +34,7 @@
         this.width = width;
         this.height = height;
       }
-      //draw method for creating the ball
+      //draw method for creating the paddle
       draw() {
         //clear the entire canvas
         ctx.clearRect(0, 0, 300, 150);
@@ -42,6 +42,7 @@
         ctx.beginPath();
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
+        //coloring the paddle
         ctx.fillStyle = "rgba(255, 0, 0, 0.8)";
         // Set the canvas up for drawing in 2D.
         ctx.fillRect(this.x, this.y, this.width, this.height);
