@@ -47,18 +47,21 @@
         ctx.stroke();
 
       }
-      drawX() {
+      drawRotateX() {
         //drawing the X
         var point1 = Math.PI / 4;
         var point2 = 5 * (Math.PI) / 4;
         var point3 = 7 * (Math.PI) / 4;
         var point4 = 3 * (Math.PI) / 4;
+        //rotationg the x
         this.angle = this.angle + this.rotationSpeed;
-        ctx.moveTo(Math.cos(point1+this.angle) * this.r + this.x, Math.sin(point1+this.angle) * this.r + this.y);
-        ctx.lineTo(Math.cos(point2+this.angle) * this.r + this.x, Math.sin(point2+this.angle) * this.r + this.y);
+
+        ctx.moveTo(Math.cos(point1 + this.angle) * this.r + this.x, Math.sin(point1 + this.angle) * this.r + this.y);
+        ctx.lineTo(Math.cos(point2 + this.angle) * this.r + this.x, Math.sin(point2 + this.angle) * this.r + this.y);
         ctx.stroke();
-        ctx.moveTo(Math.cos(point3+this.angle) * this.r + this.x, Math.sin(point3+this.angle) * this.r + this.y);
-        ctx.lineTo(Math.cos(point4+this.angle) * this.r + this.x, Math.sin(point4+this.angle) * this.r + this.y);
+
+        ctx.moveTo(Math.cos(point3 + this.angle) * this.r + this.x, Math.sin(point3 + this.angle) * this.r + this.y);
+        ctx.lineTo(Math.cos(point4 + this.angle) * this.r + this.x, Math.sin(point4 + this.angle) * this.r + this.y);
         ctx.stroke();
       }
       //move method for moving the ball
@@ -67,8 +70,8 @@
         this.y += this.ySpeed;
         this.x += this.xSpeed;
       }
-      changeRotationDirection(){
-        //change angle to opposite
+      changeRotationDirection() {
+        //change direction of the rotation when the ball reaches the edge
         if (this.y >= 150 - this.r) {
           console.log("PING The ball hit the bottom edge");
           this.angle = this.angle * (-1);
@@ -121,11 +124,17 @@
     // A function to repeat every time the animation loops.
     function repeatme() {
       //call methods
+      //draw the ball 
       b1.draw();
-      b1.drawX();
+      //draw and rotate the X inside the ball
+      b1.drawRotateX();
+      //move the ball
       b1.move();
+      //change direction of the rotation of the X
       b1.changeRotationDirection();
+      //change the direction of the ball's movement
       b1.changeDirection();
+
       window.requestAnimationFrame(repeatme);
     }
 
