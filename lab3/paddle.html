@@ -22,18 +22,17 @@
 
   <body>
 
-    <canvas id="canvas-for-ball"></canvas>
+    <canvas id="canvas-for-ball" width="400" height="400"></canvas>
 
     <script type="text/javascript">
-      //create class Ball
-      class Ball{
+      //create class Paddle
+      class Paddle{
         //create constructor
-        constructor(x,y,r,xSpeed,ySpeed){
+        constructor(x,y,width,height){
           this.x=x;
           this.y=y;
-          this.r=r;
-          this.xSpeed=xSpeed;
-          this.ySpeed=ySpeed;
+          this.width=width;
+          this.height=height;
         }
         //draw method for creating the ball
         draw(){
@@ -41,7 +40,7 @@
         ctx.clearRect(0, 0, 300, 150);
         //draw the ball (stroked, not filled).
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 5, 0, 2 * Math.PI);
+        ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
         }
         //move method for moving the ball
@@ -50,32 +49,9 @@
           this.y += this.ySpeed;
           this.x += this.xSpeed;
         }
-        changeDirection(){
-        //change direction when the ball reaches the edge
-        if(this.y>=145){
-        console.log("PING The ball hit the bottom edge");
-        this.ySpeed = this.ySpeed * - 1;
-        }
-        if(this.y<=5){
-        console.log("PONG The ball hit the top edge");
-        this.ySpeed = this.ySpeed * - 1;
-        }
-        if(this.x>=295){
-        console.log("PONG The ball hit the right edge");
-        this.xSpeed = this.xSpeed * - 1;
-        }
-        if(this.x<=5){
-        console.log("PONG The ball hit the left edge");
-        this.xSpeed = this.xSpeed * - 1;
-        }
-        }
       }
 
-      class Paddle{
-        
-      }
-        
-      b1 = new Ball(20, 20, 5, 3, 3);
+      p1 = new Paddle(20, 20, 20, 50);
 
       // Gets a handle to the element with id canvasOne.
       var canvas = document.getElementById("canvas-for-ball");
@@ -85,9 +61,8 @@
       // A function to repeat every time the animation loops.
       function repeatme() {
         //call methods
-        b1.draw();
-        b1.move();
-        b1.changeDirection();        
+        p1.draw();
+        //p1.move();       
         window.requestAnimationFrame(repeatme);
       }
       
