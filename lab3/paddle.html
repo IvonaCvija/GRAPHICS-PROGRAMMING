@@ -186,7 +186,7 @@
         b1.rotationSpeed += 0.001;
       }
       //decrease the speed of rotation
-      if (e.which == 109) {
+      if (e.which == 109 && b1.rotationSpeed >= 0) {
         console.log('SLOW DOWN!');
         b1.rotationSpeed -= 0.001;
       }
