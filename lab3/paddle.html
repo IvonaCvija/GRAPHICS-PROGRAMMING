@@ -159,15 +159,25 @@
     p2 = new Paddle(365, 20, 15, 50, 0, 0, 255)
     $(document.body).on('keydown', function (e) {
       console.log(e.which);
-      //up arrow
+      //p1 - up arrow
       if (e.which == 38) {
-        console.log('UP!');
+        console.log('P1 UP!');
         p1.y -= 10;
       }
-      //down arrow
+      //p1 - down arrow
       if (e.which == 40) {
-        console.log('DOWN!');
+        console.log('P1 DOWN!');
         p1.y += 10;
+      }
+      //p2 - up arrow
+      if (e.which == 87) {
+        console.log('P2 UP!');
+        p2.y -= 10;
+      }
+      //p2 - down arrow
+      if (e.which == 83) {
+        console.log('P2 DOWN!');
+        p2.y += 10;
       }
     });
 
