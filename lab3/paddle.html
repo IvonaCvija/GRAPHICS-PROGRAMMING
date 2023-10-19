@@ -154,9 +154,10 @@
       }
     }
     //adding objects
-    b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.1);
+    b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.01);
     p1 = new Paddle(20, 20, 15, 50, 255, 0, 0);
     p2 = new Paddle(365, 20, 15, 50, 0, 0, 255)
+    //moving paddles using keyboard
     $(document.body).on('keydown', function (e) {
       console.log(e.which);
       //p1 - up arrow
@@ -178,6 +179,16 @@
       if (e.which == 83) {
         console.log('P2 DOWN!');
         p2.y += 10;
+      }
+      //increase the speed of rotation
+      if (e.which == 107) {
+        console.log('FASTER!');
+        b1.rotationSpeed += 0.1;
+      }
+      //decrease the speed of rotation
+      if (e.which == 109) {
+        console.log('SLOW DOWN!');
+        b1.rotationSpeed -= 0.1;
       }
     });
 
