@@ -154,7 +154,7 @@
       }
     }
     //adding objects
-    b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.01);
+    b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.05);
     p1 = new Paddle(20, 20, 15, 50, 255, 0, 0);
     p2 = new Paddle(365, 20, 15, 50, 0, 0, 255)
     //moving paddles using keyboard
@@ -183,12 +183,12 @@
       //increase the speed of rotation
       if (e.which == 107) {
         console.log('FASTER!');
-        b1.rotationSpeed += 0.1;
+        b1.rotationSpeed += 0.001;
       }
       //decrease the speed of rotation
       if (e.which == 109) {
         console.log('SLOW DOWN!');
-        b1.rotationSpeed -= 0.1;
+        b1.rotationSpeed -= 0.001;
       }
     });
 
