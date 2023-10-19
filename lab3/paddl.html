@@ -2,6 +2,8 @@
 
 <html>
 
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
 <head>
   <meta charset="UTF-8">
   <title>Canvas</title>
@@ -25,6 +27,7 @@
   <canvas id="canvas-for-ball" width="400" height="400"></canvas>
 
   <script type="text/javascript">
+
     //create class Ball
     class Ball {
       //create constructor
@@ -138,8 +141,29 @@
       //move method for moving the ball
       move() {
         //change x and y to move the ball.
-        this.y += this.ySpeed;
-        this.x += this.xSpeed;
+        //this.y += this.ySpeed;
+        //this.x += this.xSpeed;
+
+        window.addEventListener("keypress", function (event) {
+          console.log(event);
+        });
+        //keypresses with jQuery
+        $(document.body).on('keydown', function (e) {
+          console.log(e.which);
+          switch (e.which) {
+            // key code for left arrow
+            case 38:
+              console.log('up arrow key pressed!');
+              this.y += 1;
+              break;
+
+            // key code for right arrow
+            case 40:
+              console.log('down arrow key pressed!');
+              this.y -= 1;
+              break;
+          }
+        });
       }
     }
     //adding objects
@@ -159,13 +183,14 @@
       //draw and rotate the X inside the ball
       b1.drawRotateX();
       //move the ball
-      b1.move();
+      //b1.move();
       //change direction of the rotation of the X
       b1.changeRotationDirection();
       //change the direction of the ball's movement
       b1.changeDirection();
       //calling Paddle functions
       p1.draw();
+      p1.move();
 
       window.requestAnimationFrame(repeatme);
     }
