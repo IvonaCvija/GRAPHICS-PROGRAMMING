@@ -122,11 +122,14 @@
     //create class Paddle
     class Paddle {
       //create constructor
-      constructor(x, y, width, height) {
+      constructor(x, y, width, height, red, green, blue) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
       }
       //draw method for creating the paddle
       draw() {
@@ -137,25 +140,34 @@
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
         //coloring the paddle
-        ctx.fillStyle = "rgba(255, 0, 0, 0.8)";
+        if (this.red == 255) {
+          ctx.fillStyle = "rgba(255, 0, 0, 0.8)";
+        }
+        if (this.green == 255) {
+          ctx.fillStyle = "rgba(0, 255, 0, 0.8)";
+        }
+        if (this.blue == 255) {
+          ctx.fillStyle = "rgba(0, 0, 255, 0.8)";
+        }
         // Set the canvas up for drawing in 2D.
         ctx.fillRect(this.x, this.y, this.width, this.height);
       }
     }
     //adding objects
     b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.1);
-    p1 = new Paddle(20, 20, 15, 50);
+    p1 = new Paddle(20, 20, 15, 50, 255, 0, 0);
+    p2 = new Paddle(365, 20, 15, 50, 0, 0, 255)
     $(document.body).on('keydown', function (e) {
       console.log(e.which);
       //up arrow
       if (e.which == 38) {
         console.log('UP!');
-        p1.y -= 5;
+        p1.y -= 10;
       }
       //down arrow
       if (e.which == 40) {
         console.log('DOWN!');
-        p1.y += 5;
+        p1.y += 10;
       }
     });
 
@@ -179,7 +191,7 @@
       b1.changeDirection();
       //calling Paddle functions
       p1.draw();
-      //p1.move();
+      p2.draw();
 
       window.requestAnimationFrame(repeatme);
     }
