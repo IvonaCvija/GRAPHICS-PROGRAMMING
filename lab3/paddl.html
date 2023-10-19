@@ -28,6 +28,9 @@
 
   <script type="text/javascript">
 
+    window.addEventListener("keydown", function (event) {
+      console.log(event);
+    });
     //create class Ball
     class Ball {
       //create constructor
@@ -144,21 +147,18 @@
         //this.y += this.ySpeed;
         //this.x += this.xSpeed;
 
-        window.addEventListener("keypress", function (event) {
-          console.log(event);
-        });
         //keypresses with jQuery
         $(document.body).on('keydown', function (e) {
           console.log(e.which);
           //up arrow
-          if (e.which = 38) {
+          if (e.which == 38) {
             console.log('UP!');
             this.y += 1;
           }
           //down arrow
-          if (e.which = 40) {
+          if (e.which == 40) {
             console.log('DOWN!');
-            this.y += 1;
+            this.y -= 1;
           }
         });
       }
@@ -166,6 +166,19 @@
     //adding objects
     b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.1);
     p1 = new Paddle(20, 20, 15, 50);
+    $(document.body).on('keydown', function (e) {
+          console.log(e.which);
+          //up arrow
+          if (e.which == 38) {
+            console.log('UP!');
+            p1.y -= 2;
+          }
+          //down arrow
+          if (e.which == 40) {
+            console.log('DOWN!');
+            p1.y += 2;
+          }
+        });
 
     // Gets a handle to the element with id canvasOne.
     var canvas = document.getElementById("canvas-for-ball");
@@ -187,7 +200,7 @@
       b1.changeDirection();
       //calling Paddle functions
       p1.draw();
-      p1.move();
+      //p1.move();
 
       window.requestAnimationFrame(repeatme);
     }
