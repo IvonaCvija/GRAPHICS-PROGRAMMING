@@ -150,18 +150,15 @@
         //keypresses with jQuery
         $(document.body).on('keydown', function (e) {
           console.log(e.which);
-          switch (e.which) {
-            // key code for left arrow
-            case 38:
-              console.log('up arrow key pressed!');
-              this.y += 1;
-              break;
-
-            // key code for right arrow
-            case 40:
-              console.log('down arrow key pressed!');
-              this.y -= 1;
-              break;
+          //up arrow
+          if (e.which = 38) {
+            console.log('UP!');
+            this.y += 1;
+          }
+          //down arrow
+          if (e.which = 40) {
+            console.log('DOWN!');
+            this.y += 1;
           }
         });
       }
@@ -178,7 +175,7 @@
     // A function to repeat every time the animation loops.
     function repeatme() {
       //calling Ball functions
-      //draw the ball 
+      //draw the ball
       b1.draw();
       //draw and rotate the X inside the ball
       b1.drawRotateX();
