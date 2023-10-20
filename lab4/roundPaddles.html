@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <h1>Ivona Cvija</h1>
+
+  <style type="text/css">
+    body {
+      background-color: white;
+    }
+
+    /*add border of canvas*/
+    canvas {
+      border: black 3px solid;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <canvas id="canvas-for-ball" width="400" height="400"></canvas>
+
+  <script type="text/javascript">
+
+    window.addEventListener("keydown", function (event) {
+      console.log(event);
+    });
+    //create class Ball
+    class Ball {
+      //create constructor
+      constructor(x, y, r, xSpeed, ySpeed, angle, rotationSpeed) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+        this.angle = angle;
+        this.rotationSpeed = rotationSpeed;
+      }
+      //draw method for creating the ball
+      draw() {
+        //clear the entire canvas
+        ctx.clearRect(0, 0, 400, 400);
+        //draw the ball (stroked, not filled).
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+        ctx.stroke();
+      }
+      drawRotateX() {
+        //drawing the X
+        var point1 = Math.PI / 4;
+        var point2 = 5 * (Math.PI) / 4;
+        var point3 = 7 * (Math.PI) / 4;
+        var point4 = 3 * (Math.PI) / 4;
+        //rotationg the x
+        this.angle = this.angle + this.rotationSpeed;
+
+        ctx.moveTo(Math.cos(point1 + this.angle) * this.r + this.x, Math.sin(point1 + this.angle) * this.r + this.y);
+        ctx.lineTo(Math.cos(point2 + this.angle) * this.r + this.x, Math.sin(point2 + this.angle) * this.r + this.y);
+        ctx.stroke();
+
+        ctx.moveTo(Math.cos(point3 + this.angle) * this.r + this.x, Math.sin(point3 + this.angle) * this.r + this.y);
+        ctx.lineTo(Math.cos(point4 + this.angle) * this.r + this.x, Math.sin(point4 + this.angle) * this.r + this.y);
+        ctx.stroke();
+      }
+      //move method for moving the ball
+      move() {
+        //change x and y to move the ball.
+        this.y += this.ySpeed;
+        //this.x += this.xSpeed;
+
+        //bottom wall
+        if (this.y >= 400 - this.r) {
+          this.y = 400 - this.r;
+          console.log("PING The ball hit the bottom edge");
+          this.ySpeed = this.ySpeed * -0.9;
+        }
+      }
+      gravityPull() {
+        this.ySpeed += 0.1;
+      }
+      changeRotationDirection() {
+        //change direction of the rotation when the ball reaches the edge
+        if (this.y >= 400 - this.r) {
+          console.log("PING The ball hit the bottom edge");
+          this.angle = this.angle * -1;
+          this.rotationSpeed = this.rotationSpeed * -1;
+        }
+        if (this.y <= this.r) {
+          console.log("PONG The ball hit the top edge");
+          this.angle = this.angle * -1;
+          this.rotationSpeed = this.rotationSpeed * -1;
+        }
+        if (this.x >= 400 - this.r) {
+          console.log("PONG The ball hit the right edge");
+          this.angle = this.angle * -1;
+          this.rotationSpeed = this.rotationSpeed * -1;
+        }
+        if (this.x <= this.r) {
+          console.log("PONG The ball hit the left edge");
+          this.angle = this.angle * -1;
+          this.rotationSpeed = this.rotationSpeed * -1;
+        }
+      }
+      changeDirection() {
+        //change direction when the ball reaches the edge
+        if (this.y >= 400 - this.r) {
+          console.log("PING The ball hit the bottom edge");
+          this.ySpeed = this.ySpeed * - 1;
+        }
+        if (this.y <= this.r) {
+          console.log("PONG The ball hit the top edge");
+          this.ySpeed = this.ySpeed * - 1;
+        }
+        if (this.x >= 400 - this.r) {
+          console.log("PONG The ball hit the right edge");
+          this.xSpeed = this.xSpeed * - 1;
+        }
+        if (this.x <= this.r) {
+          console.log("PONG The ball hit the left edge");
+          this.xSpeed = this.xSpeed * - 1;
+        }
+      }
+    }
+    //create class Paddle
+    class Paddle {
+      //create constructor
+      constructor(x, y, r, red, green, blue) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+      }
+      //draw method for creating the paddle
+      draw() {
+        //clear the entire canvas
+        ctx.clearRect(this.x, this.y, this.width, this.height);
+        //draw the rectangle
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+        ctx.stroke();
+        //coloring the paddle
+        if (this.red == 255) {
+          ctx.fillStyle = "rgba(255, 0, 0, 0.8)";
+        }
+        if (this.green == 255) {
+          ctx.fillStyle = "rgba(0, 255, 0, 0.8)";
+        }
+        if (this.blue == 255) {
+          ctx.fillStyle = "rgba(0, 0, 255, 0.8)";
+        }
+        // Set the canvas up for drawing in 2D.
+        ctx.fill();
+      }
+    }
+    //adding objects
+    b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.05);
+    p1 = new Paddle(20, 20, 15, 255, 0, 0);
+    p2 = new Paddle(365, 20, 15, 0, 0, 255)
+    //moving paddles using keyboard
+    $(document.body).on('keydown', function (e) {
+      console.log(e.which);
+      //p1 - up arrow
+      if (e.which == 38) {
+        console.log('P1 UP!');
+        p1.y -= 10;
+      }
+      //p1 - down arrow
+      if (e.which == 40) {
+        console.log('P1 DOWN!');
+        p1.y += 10;
+      }
+      //p2 - up arrow
+      if (e.which == 87) {
+        console.log('P2 UP!');
+        p2.y -= 10;
+      }
+      //p2 - down arrow
+      if (e.which == 83) {
+        console.log('P2 DOWN!');
+        p2.y += 10;
+      }
+      //increase the speed of rotation
+      if (e.which == 107) {
+        console.log('FASTER!');
+        b1.rotationSpeed += 0.001;
+      }
+      //decrease the speed of rotation
+      if (e.which == 109 && b1.rotationSpeed > 0) {
+        console.log('SLOW DOWN!');
+        b1.rotationSpeed -= 0.001;
+      }
+    });
+
+    // Gets a handle to the element with id canvasOne.
+    var canvas = document.getElementById("canvas-for-ball");
+    // Get a 2D context for the canvas.
+    var ctx = canvas.getContext("2d");
+
+    // A function to repeat every time the animation loops.
+    function repeatme() {
+      //calling Ball functions
+      //draw the ball
+      b1.draw();
+      //draw and rotate the X inside the ball
+      b1.drawRotateX();
+      //move the ball
+      b1.move();
+      b1.gravityPull();
+      //change direction of the rotation of the X
+      b1.changeRotationDirection();
+      //change the direction of the ball's movement
+      //b1.changeDirection();
+      //calling Paddle functions
+      p1.draw();
+      p2.draw();
+
+      window.requestAnimationFrame(repeatme);
+    }
+
+    // Get the animation going.
+    repeatme();
+  </script>
+
+</body>
+
+</html>
