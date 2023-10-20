@@ -74,7 +74,17 @@
       move() {
         //change x and y to move the ball.
         this.y += this.ySpeed;
-        this.x += this.xSpeed;
+        //this.x += this.xSpeed;
+
+        //bottom wall
+        if (this.y >= 400 - this.r) {
+          this.y = 400 - this.r;
+          console.log("PING The ball hit the bottom edge");
+          this.ySpeed = this.ySpeed * -0.9;
+        }
+      }
+      gravityPull(){
+        this.ySpeed += 0.1;
       }
       changeRotationDirection() {
         //change direction of the rotation when the ball reaches the edge
@@ -186,7 +196,7 @@
         b1.rotationSpeed += 0.001;
       }
       //decrease the speed of rotation
-      if (e.which == 109 && b1.rotationSpeed >= 0) {
+      if (e.which == 109 && b1.rotationSpeed > 0) {
         console.log('SLOW DOWN!');
         b1.rotationSpeed -= 0.001;
       }
@@ -205,11 +215,12 @@
       //draw and rotate the X inside the ball
       b1.drawRotateX();
       //move the ball
-      //b1.move();
+      b1.move();
+      b1.gravityPull();
       //change direction of the rotation of the X
       b1.changeRotationDirection();
       //change the direction of the ball's movement
-      b1.changeDirection();
+      //b1.changeDirection();
       //calling Paddle functions
       p1.draw();
       p2.draw();
