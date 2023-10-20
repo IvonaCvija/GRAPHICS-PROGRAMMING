@@ -2,56 +2,54 @@
 
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Canvas</title>
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
 
-    <style type="text/css">
-      canvas {
-        border: 1px solid grey; 
+  <style type="text/css">
+    canvas {
+      border: 1px solid grey;
+    }
+  </style>
+
+</head>
+
+<body>
+  <canvas id="canvas-for-ball"></canvas>
+
+  <script type="text/javascript">
+    var noClicks = 0;
+
+    // Gets a handle to the element with id canvasOne.
+    var canvas = document.getElementById("canvas-for-ball");
+    // Get a 2D context for the canvas.
+    var ctx = canvas.getContext("2d");
+    // Make the fill style red.
+    ctx.fillStyle = "rgb(255, 0, 0)";
+    // local coordinates, set x and y where it's clicked
+    var canvasPosition = {
+      y: canvas.offsetTop,
+      x: canvas.offsetLeft
+    }
+
+    canvas.addEventListener("mousemove", function (event) {
+      var mouse = {
+        x: event.clientX - canvasPosition.x,
+        y: event.clientY - canvasPosition.y
       }
-    </style>
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 6, 0, 2 * Math.PI);
+      ctx.fill();
 
-  </head>
+      console.log("Local/Canvas coordinates: " + canvasPosition.x, canvasPosition.y);
+      console.log("Global coordinates: " + event.clientX, event.clientY);
+      console.log("Mouse coordinates: " + mouse.x, mouse.y);
 
-  <body>
-    <canvas id="canvas-for-ball"></canvas>
+      noClicks += 1;
+      console.log(noClicks);
+    });
+  </script>
 
-    <script type="text/javascript">
-      var noClicks = 0;
-      
-      // Gets a handle to the element with id canvasOne.
-      var canvas = document.getElementById("canvas-for-ball");
-      // Get a 2D context for the canvas.
-      var ctx = canvas.getContext("2d");
-      // Make the fill style red.
-      ctx.fillStyle = "rgb(255, 0, 0)";
-      // local coordinates, set x and y where it's clicked
-      var canvasPosition = {
-        y: canvas.offsetTop,
-        x: canvas.offsetLeft
-      }
-
-      canvas.addEventListener("click", function(event) { 
-        //
-        var mouse = {
-          x:event.clientX-canvasPosition.x,
-          y:event.clientY-canvasPosition.y
-        }
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 6, 0, 2 * Math.PI);
-        ctx.fill();
-        
-        //
-        console.log("Local/Canvas coordinates: "+ canvasPosition.x, canvasPosition.y);
-        console.log("Global coordinates: "+ event.clientX, event.clientY);
-        console.log("Mouse coordinates: "+ mouse.x, mouse.y);
-
-        noClicks += 1;
-        console.log(noClicks);
-      });
-    </script>
-
-  </body>
+</body>
 
 </html>

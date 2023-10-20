@@ -206,6 +206,18 @@
     // Get a 2D context for the canvas.
     var ctx = canvas.getContext("2d");
 
+    var canvasPosition = {
+      y: canvas.offsetTop,
+      x: canvas.offsetLeft
+    }
+
+    canvas.addEventListener("mousemove", function (event) {
+      var mouse = {
+        x: event.clientX - canvasPosition.x,
+        y: event.clientY - canvasPosition.y
+      }
+    });
+
     // A function to repeat every time the animation loops.
     function repeatme() {
       //calling Ball functions
