@@ -144,11 +144,11 @@
         const currentDistanceRP = Math.sqrt(disXRP * disXRP + disYRP * disYRP);
 
         if (currentDistanceLP <= this.r + p1.r) {
-          console.log('Collision detected');
-          let showTextUntil = performance.now() + 750; // 750 milliseconds = 0.75 sec
-
+          console.log('Collision detected, left paddle');
+          this.xSpeed = this.xSpeed * - 1;
 
           //show text for 0.75 sec
+          let showTextUntil = performance.now() + 750; // 750 milliseconds = 0.75 sec
           function renderText() {
             ctx.font = "30px Arial";
             ctx.fillText("Collision detected", 10, 50);
@@ -156,11 +156,11 @@
               requestAnimationFrame(renderText);
             }
           }
-
           requestAnimationFrame(renderText);
         }
         else if (currentDistanceRP <= this.r + p2.r) {
-          console.log('Collision detected');
+          console.log('Collision detected, right paddle');
+          this.xSpeed = this.xSpeed * - 1;
         }
       }
     }
@@ -214,33 +214,33 @@
         console.log('P1 DOWN!');
         p1.y += 10;
       }
-      //p2 - up arrow
+      //p2 - (with 'W')
       if (e.which == 87) {
         console.log('P2 UP!');
         p2.y -= 10;
       }
-      //p2 - down arrow
+      //p2 - (with 'S')
       if (e.which == 83) {
         console.log('P2 DOWN!');
         p2.y += 10;
       }
-      //increase the speed of rotation
+      //increase the speed of rotation(with '+')
       if (e.which == 107) {
         console.log('FASTER SPIN!');
         b1.rotationSpeed += 0.001;
       }
-      //decrease the speed of rotation
+      //decrease the speed of rotation(with '-')
       if (e.which == 109 && b1.rotationSpeed > 0) {
         console.log('SLOW DOWN, YOU HELICOPTER!');
         b1.rotationSpeed -= 0.001;
       }
-      //increase the ball's speed
+      //increase the ball's speed(with '2')
       if (e.which == 50 && b1.xSpeed > 0 && b1.ySpeed > 0) {
         console.log("LET'S GOOO!");
         b1.xSpeed += 0.1;
         b1.ySpeed += 0.1;
       }
-      //decrease the ball's speed
+      //decrease the ball's speed(with '1')
       if (e.which == 49 && b1.xSpeed > 0 && b1.ySpeed > 0) {
         console.log('SLOW NOW!');
         b1.xSpeed -= 0.1;
