@@ -163,17 +163,20 @@
       //collision detection method
       collisionDetection(){
         //distance between the ball and the left paddle
-        disXLP=b1.x-p1.x;
-        disYLP=b1.y-p1.y;
+        const disXLP=b1.x-p1.x;
+        // console.log("b1 x: "+ b1.x);
+        // console.log("p1 x: "+ p1.x);
+        // console.log("disXLP: "+ disXLP);
+        const disYLP=b1.y-p1.y;
         //calculate euclidean distance
-        currentDistance = Math.sqrt(disXLP * disXLP + disYLP * disYLP);
-        if(currentDistance <= 0){
+        const currentDistance = Math.sqrt(disXLP * disXLP + disYLP * disYLP);
+        if(currentDistance <= b1.r+p1.r){
           console.log('Collision detected');
         }
       }
     }
     //adding objects
-    b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.05);
+    b1 = new Ball(20, 20, 10, 1, 2, 0.1, 0.05);
     p1 = new Paddle(20, 20, 15, 255, 0, 0);
     p2 = new Paddle(365, 20, 15, 0, 0, 255)
     //moving paddles using keyboard
@@ -245,8 +248,11 @@
       //change the direction of the ball's movement
       b1.changeDirection();
       //calling Paddle functions
+      //drawing the paddles
       p1.draw();
       p2.draw();
+      //collision detection
+      p1.collisionDetection();
 
       window.requestAnimationFrame(repeatme);
     }
