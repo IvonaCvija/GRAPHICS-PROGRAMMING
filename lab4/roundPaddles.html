@@ -169,8 +169,17 @@
         // console.log("disXLP: "+ disXLP);
         const disYLP=b1.y-p1.y;
         //calculate euclidean distance
-        const currentDistance = Math.sqrt(disXLP * disXLP + disYLP * disYLP);
-        if(currentDistance <= b1.r+p1.r){
+        const currentDistanceLP = Math.sqrt(disXLP * disXLP + disYLP * disYLP);
+        //distance between the ball and the right paddle
+        const disXRP=b1.x-p2.x;
+        const disYRP=b1.y-p2.y;
+        //calculate euclidean distance
+        const currentDistanceRP = Math.sqrt(disXRP * disXRP + disYRP * disYRP);
+        
+        if(currentDistanceLP <= b1.r+p1.r){
+          console.log('Collision detected');
+        }
+        else if(currentDistanceRP <= b1.r+p2.r){
           console.log('Collision detected');
         }
       }
