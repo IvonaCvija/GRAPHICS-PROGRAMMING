@@ -36,8 +36,11 @@
 
             renderer.render(scene, camera);
         
-            sphere.rotation.x += 0.01;
-            sphere.rotation.z += 0.01;
+            // sphere.rotation.x += 0.01;
+            // sphere.rotation.y += 0.01;
+            
+            tetrahedron.rotation.x += 0.01;
+            tetrahedron.rotation.y += 0.01;
 
             requestAnimationFrame(repeatMe);
         }
