@@ -26,7 +26,7 @@
         // const sphere = new THREE.Mesh(geometry, material); scene.add(sphere);
 
         const geometry = new THREE.TetrahedronGeometry(10, 0);
-        const material = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe:true});
+        const material = new THREE.MeshBasicMaterial({ color: "rgb(89, 29, 201)", wireframe:false});
         const tetrahedron = new THREE.Mesh(geometry, material); scene.add(tetrahedron);
 
         //scene.add(sphere);
@@ -38,7 +38,7 @@
         
             // sphere.rotation.x += 0.01;
             // sphere.rotation.y += 0.01;
-            
+
             tetrahedron.rotation.x += 0.01;
             tetrahedron.rotation.y += 0.01;
 
