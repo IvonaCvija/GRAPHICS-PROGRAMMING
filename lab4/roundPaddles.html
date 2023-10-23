@@ -45,9 +45,8 @@
       }
       //draw method for creating the ball
       draw() {
-        //clear the entire canvas
-        ctx.clearRect(0, 0, 400, 400);
-        //draw the ball (stroked, not filled).
+        
+        //draw the ball
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         ctx.stroke();
@@ -198,7 +197,9 @@
       }
     }
     //adding objects
-    b1 = new Ball(20, 20, 10, 1, 2, 0.1, 0.05);
+    b1 = new Ball(40, 30, 10, 1, 1.5, 0.1, 0.05);
+    b2 = new Ball(50, 30, 15, 1, 1, 0.1, 0.1);
+    b3 = new Ball(60, 30, 20, 1, 1, 0.1, 0.15);
     p1 = new Paddle(20, 20, 15, 255, 0, 0);
     p2 = new Paddle(365, 20, 15, 0, 0, 255)
     //moving paddles using keyboard
@@ -269,18 +270,30 @@
 
     // A function to repeat every time the animation loops.
     function repeatme() {
+      //clear the entire canvas
+      ctx.clearRect(0, 0, 400, 400);
       //calling Ball functions
       //draw the ball
       b1.draw();
+      b2.draw();
+      b3.draw();
       //draw and rotate the X inside the ball
       b1.drawRotateX();
+      b2.drawRotateX();
+      b3.drawRotateX();
       //move the ball
       b1.move();
+      b2.move();
+      b3.move();
       //b1.gravityPull();
       //change direction of the rotation of the X
       b1.changeRotationDirection();
+      b2.changeRotationDirection();
+      b3.changeRotationDirection();
       //change the direction of the ball's movement
       b1.changeDirection();
+      b2.changeDirection();
+      b3.changeDirection();
       //calling Paddle functions
       //drawing the paddles
       p1.draw();
@@ -288,6 +301,8 @@
       //collision detection
       // p1.collisionDetection();
       b1.collisionDetection();
+      b2.collisionDetection();
+      b3.collisionDetection();
 
       window.requestAnimationFrame(repeatme);
     }
