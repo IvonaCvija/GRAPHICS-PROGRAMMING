@@ -75,7 +75,7 @@
         this.y += this.ySpeed;
         //this.x += this.xSpeed;
 
-        //bottom wall
+        //bottom wall, gravity
         if (this.y >= 400 - this.r) {
           this.y = 400 - this.r;
           console.log("PING The ball hit the bottom edge");
@@ -204,6 +204,20 @@
     var canvas = document.getElementById("canvas-for-ball");
     // Get a 2D context for the canvas.
     var ctx = canvas.getContext("2d");
+
+    // Mouse controlling p1
+    var canvasPosition = {
+      y: canvas.offsetTop,
+      x: canvas.offsetLeft
+    }
+
+    canvas.addEventListener("mousemove", function (event) {
+      var mouse = {
+        x: event.clientX - canvasPosition.x,
+        y: event.clientY - canvasPosition.y
+      }
+      p1.y=mouse.y - (p1.r/2);
+    });
 
     // A function to repeat every time the animation loops.
     function repeatme() {
