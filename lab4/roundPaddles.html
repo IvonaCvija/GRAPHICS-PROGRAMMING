@@ -217,22 +217,22 @@
       //p1 - up arrow
       if (e.which == 38) {
         console.log('P1 UP!');
-        p1.y -= 10;
+        p1.y -= 15;
       }
       //p1 - down arrow
       if (e.which == 40) {
         console.log('P1 DOWN!');
-        p1.y += 10;
+        p1.y += 15;
       }
       //p2 - (with 'W')
       if (e.which == 87) {
         console.log('P2 UP!');
-        p2.y -= 10;
+        p2.y -= 15;
       }
       //p2 - (with 'S')
       if (e.which == 83) {
         console.log('P2 DOWN!');
-        p2.y += 10;
+        p2.y += 15;
       }
       //increase the speed of rotation(with '+')
       if (e.which == 107) {
@@ -268,7 +268,6 @@
       y: canvas.offsetTop,
       x: canvas.offsetLeft
     }
-
     canvas.addEventListener("mousemove", function (event) {
       var mouse = {
         x: event.clientX - canvasPosition.x,
