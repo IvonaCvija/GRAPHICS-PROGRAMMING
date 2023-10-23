@@ -160,7 +160,8 @@
 
         if (currentDistanceLP <= this.r + p1.r) {
           console.log('Collision detected, left paddle');
-          this.xSpeed = this.xSpeed * - 1;
+          //the ball goes right after colliding with the left paddle
+          this.xSpeed = Math.abs(this.xSpeed);
 
           //show text "Collision detected, left paddle" for 750 milliseconds
           const msgElement = document.getElementById("collisionMessage");
@@ -173,7 +174,8 @@
         }
         else if (currentDistanceRP <= this.r + p2.r) {
           console.log('Collision detected, right paddle');
-          this.xSpeed = this.xSpeed * - 1;
+          //the ball goes left after colliding with the right paddle
+          this.xSpeed = -Math.abs(this.xSpeed);
 
           //show text "Collision detected, right paddle" for 750 milliseconds
           const msgElement = document.getElementById("collisionMessage");
@@ -259,16 +261,16 @@
         b1.rotationSpeed -= 0.001;
       }
       //increase the ball's speed(with '2')
-      if (e.which == 50 && b1.xSpeed > 0 && b1.ySpeed > 0) {
+      if (e.which == 50 && b1.xSpeed > 0) {
         console.log("LET'S GOOO!");
         b1.xSpeed += 1;
         b1.ySpeed += 1;
       }
       //decrease the ball's speed(with '1')
-      if (e.which == 49 && b1.xSpeed > 0 && b1.ySpeed > 0) {
+      if (e.which == 49 && b1.xSpeed > 0) {
         console.log('SLOW NOW!');
-        b1.xSpeed -= 1;
-        b1.ySpeed -= 1;
+        b1.xSpeed -= 0.4;
+        b1.ySpeed -= 0.4;
       }
     });
 
