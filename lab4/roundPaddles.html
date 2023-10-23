@@ -128,25 +128,38 @@
         }
       }
       //collision detection method
-      collisionDetection(){
+      collisionDetection() {
         //distance between the ball and the left paddle
-        const disXLP=this.x-p1.x;
+        const disXLP = this.x - p1.x;
         // console.log("b1 x: "+ b1.x);
         // console.log("p1 x: "+ p1.x);
         // console.log("disXLP: "+ disXLP);
-        const disYLP=this.y-p1.y;
+        const disYLP = this.y - p1.y;
         //calculate euclidean distance
         const currentDistanceLP = Math.sqrt(disXLP * disXLP + disYLP * disYLP);
         //distance between the ball and the right paddle
-        const disXRP=this.x-p2.x;
-        const disYRP=this.y-p2.y;
+        const disXRP = this.x - p2.x;
+        const disYRP = this.y - p2.y;
         //calculate euclidean distance
         const currentDistanceRP = Math.sqrt(disXRP * disXRP + disYRP * disYRP);
-        
-        if(currentDistanceLP <= this.r+p1.r){
+
+        if (currentDistanceLP <= this.r + p1.r) {
           console.log('Collision detected');
+          let showTextUntil = performance.now() + 750; // 750 milliseconds = 0.75 sec
+
+
+          //show text for 0.75 sec
+          function renderText() {
+            ctx.font = "30px Arial";
+            ctx.fillText("Collision detected", 10, 50);
+            if (performance.now() < showTextUntil) {
+              requestAnimationFrame(renderText);
+            }
+          }
+
+          requestAnimationFrame(renderText);
         }
-        else if(currentDistanceRP <= this.r+p2.r){
+        else if (currentDistanceRP <= this.r + p2.r) {
           console.log('Collision detected');
         }
       }
@@ -239,7 +252,7 @@
         x: event.clientX - canvasPosition.x,
         y: event.clientY - canvasPosition.y
       }
-      p1.y=mouse.y - (p1.r/2);
+      p1.y = mouse.y - (p1.r / 2);
     });
 
     // A function to repeat every time the animation loops.
