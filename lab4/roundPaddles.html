@@ -226,13 +226,25 @@
       }
       //increase the speed of rotation
       if (e.which == 107) {
-        console.log('FASTER!');
+        console.log('FASTER SPIN!');
         b1.rotationSpeed += 0.001;
       }
       //decrease the speed of rotation
       if (e.which == 109 && b1.rotationSpeed > 0) {
-        console.log('SLOW DOWN!');
+        console.log('SLOW DOWN, YOU HELICOPTER!');
         b1.rotationSpeed -= 0.001;
+      }
+      //increase the ball's speed
+      if (e.which == 50 && b1.xSpeed > 0 && b1.ySpeed > 0) {
+        console.log("LET'S GOOO!");
+        b1.xSpeed += 0.1;
+        b1.ySpeed += 0.1;
+      }
+      //decrease the ball's speed
+      if (e.which == 49 && b1.xSpeed > 0 && b1.ySpeed > 0) {
+        console.log('SLOW NOW!');
+        b1.xSpeed -= 0.1;
+        b1.ySpeed -= 0.1;
       }
     });
 
