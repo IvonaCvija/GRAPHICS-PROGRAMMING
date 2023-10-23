@@ -45,7 +45,7 @@
       }
       //draw method for creating the ball
       draw() {
-        
+
         //draw the ball
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
@@ -238,14 +238,14 @@
       //increase the ball's speed(with '2')
       if (e.which == 50 && b1.xSpeed > 0 && b1.ySpeed > 0) {
         console.log("LET'S GOOO!");
-        b1.xSpeed += 0.1;
-        b1.ySpeed += 0.1;
+        b1.xSpeed += 1;
+        b1.ySpeed += 1;
       }
       //decrease the ball's speed(with '1')
       if (e.which == 49 && b1.xSpeed > 0 && b1.ySpeed > 0) {
         console.log('SLOW NOW!');
-        b1.xSpeed -= 0.1;
-        b1.ySpeed -= 0.1;
+        b1.xSpeed -= 1;
+        b1.ySpeed -= 1;
       }
     });
 
