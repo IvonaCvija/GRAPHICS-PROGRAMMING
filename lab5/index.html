@@ -27,7 +27,17 @@
 
         scene.add(sphere);
 
-        renderer.render(scene, camera);
+        function repeatMe(){
+
+            renderer.render(scene, camera);
+        
+            sphere.rotation.x += 0.01;
+            sphere.rotation.z += 0.01;
+
+            requestAnimationFrame(repeatMe);
+        }
+
+        repeatMe();
 
     </script>
 </body>
