@@ -24,6 +24,8 @@
 
 <body>
 
+  <div id="collisionMessage"></div>
+
   <canvas id="canvas-for-ball" width="400" height="400"></canvas>
 
   <script type="text/javascript">
@@ -146,16 +148,31 @@
           console.log('Collision detected, left paddle');
           this.xSpeed = this.xSpeed * - 1;
 
-          //show text for 0.75 sec
-          let showTextUntil = performance.now() + 750; // 750 milliseconds = 0.75 sec
-          function renderText() {
-            ctx.font = "30px Arial";
-            ctx.fillText("Collision detected", 10, 50);
-            if (performance.now() < showTextUntil) {
-              requestAnimationFrame(renderText);
-            }
-          }
-          requestAnimationFrame(renderText);
+          // Show the text "Collision detected, left paddle" in an HTML element with the ID "collisionMessage" for 750 milliseconds
+          const msgElement = document.getElementById("collisionMessage");
+          msgElement.innerHTML = "Collision detected, left paddle";
+
+          setTimeout(function () {
+            msgElement.innerHTML = ''; // Clear the message after 750 milliseconds
+          }, 750);
+
+
+          // //show text for 0.75 seconds
+          // document.getElementById("Collision detected, left paddle").innerHTML = msg;
+          // setTimeout(function () {
+          //   document.getElementById("Collision detected, left paddle").innerHTML = '';
+          // }, 750);
+
+
+          // let showTextUntil = performance.now() + 750; // 750 milliseconds = 0.75 sec
+          // function renderText() {
+          //   ctx.font = "30px Arial";
+          //   ctx.fillText("Collision detected", 10, 50);
+          //   if (performance.now() < showTextUntil) {
+          //     requestAnimationFrame(renderText);
+          //   }
+          // }
+          // requestAnimationFrame(renderText);
         }
         else if (currentDistanceRP <= this.r + p2.r) {
           console.log('Collision detected, right paddle');
