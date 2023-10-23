@@ -21,11 +21,16 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        const geometry = new THREE.SphereGeometry(15, 80, 20);
-        const material = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe:true});
-        const sphere = new THREE.Mesh(geometry, material); scene.add(sphere);
+        // const geometry = new THREE.SphereGeometry(15, 80, 20);
+        // const material = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe:true});
+        // const sphere = new THREE.Mesh(geometry, material); scene.add(sphere);
 
-        scene.add(sphere);
+        const geometry = new THREE.TetrahedronGeometry(10, 0);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe:true});
+        const tetrahedron = new THREE.Mesh(geometry, material); scene.add(tetrahedron);
+
+        //scene.add(sphere);
+        scene.add(tetrahedron);
 
         function repeatMe(){
 
