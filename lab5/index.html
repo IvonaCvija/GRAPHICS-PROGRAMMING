@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/three.js/r99/three.min.js></script>
     <meta charset="UTF-8">
     <title></title>
     <style type="text/css">
@@ -19,6 +20,15 @@
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
+
+        const geometry = new THREE.SphereGeometry(15, 80, 20);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe:true});
+        const sphere = new THREE.Mesh(geometry, material); scene.add(sphere);
+
+        scene.add(sphere);
+
+        renderer.render(scene, camera);
+
     </script>
 </body>
 
