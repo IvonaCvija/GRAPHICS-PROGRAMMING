@@ -160,6 +160,17 @@
         // Set the canvas up for drawing in 2D.
         ctx.fill();
       }
+      //collision detection method
+      collisionDetection(){
+        //distance between the ball and the left paddle
+        disXLP=b1.x-p1.x;
+        disYLP=b1.y-p1.y;
+        //calculate euclidean distance
+        currentDistance = Math.sqrt(disXLP * disXLP + disYLP * disYLP);
+        if(currentDistance <= 0){
+          console.log('Collision detected');
+        }
+      }
     }
     //adding objects
     b1 = new Ball(20, 20, 10, 4, 2, 0.1, 0.05);
