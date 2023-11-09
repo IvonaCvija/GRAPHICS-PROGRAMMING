@@ -27,7 +27,7 @@
             }
             create() {
                 const geometry = new THREE.TetrahedronGeometry(this.radius, this.detail);// 10, 2
-                const material = new THREE.MeshLambertMaterial({ color: "rgb(39, 29, 251)", wireframe: this.wireframe });
+                const material = new THREE.MeshToonMaterial({ color: "rgb(39, 29, 251)", wireframe: this.wireframe });
                 this.tetrahedron = new THREE.Mesh(geometry, material);
                 scene.add(this.tetrahedron);
             }
@@ -51,7 +51,7 @@
             }
         }
         //adding objects
-        t1 = new Tetrahedron(7, 2, false, 10000, 10000, 0.1, 0.1);
+        t1 = new Tetrahedron(7, 6, false, 10000, 10000, 0.1, 0.1);
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
