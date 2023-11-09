@@ -42,9 +42,9 @@
                 this.tetrahedron.position.y -= this.ySpeed;
             }
             changeDirection() {
-                // if (this.tetrahedron.position.y > (20 + this.radius)) {
-                //     this.tetrahedron.position.y -= 0.1;
-                // }
+                if (this.tetrahedron.position.y > (8.5 + this.radius)) {
+                    this.ySpeed = this.ySpeed * - 1;
+                }
                 if (this.tetrahedron.position.y <= (-10 + this.radius)) {
                     this.ySpeed = this.ySpeed * - 1;
                 }
