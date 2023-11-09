@@ -36,11 +36,17 @@
                 this.tetrahedron.rotation.y = time / this.rotationY;
             }
             move(){
-                this.tetrahedron.position.x += 0.1;
+                //falling
+                if(this.tetrahedron.position.y > (-10+this.radius)){
+                this.tetrahedron.position.y -= 0.1;
+                }
+                if(this.tetrahedron.position.y <= (-10+this.radius)){
+                this.tetrahedron.position.y += 0.1;
+                }
             }
         }
         //adding objects
-        t1 = new Tetrahedron(10, 2, false, 10000, 10000);
+        t1 = new Tetrahedron(7, 2, false, 10000, 10000);
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
