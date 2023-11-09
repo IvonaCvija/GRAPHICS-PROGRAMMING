@@ -14,24 +14,28 @@
     <script type="text/javascript">
 
         class Tetrahedron {
-            constructor(radius, detail, wireframe) {
+            constructor(radius, detail, wireframe, rotationX, rotationY) {
                 this.radius = radius;
                 this.detail = detail;
                 //this.material = material;
                 this.wireframe = wireframe;
+                this.rotationX = rotationX;
+                this.rotationY = rotationY;
+                this.tetrahedron = null;
             }
             create() {
                 const geometry = new THREE.TetrahedronGeometry(this.radius, this.detail);// 10, 2
                 const material = new THREE.MeshLambertMaterial({ color: "rgb(89, 29, 201)", wireframe: this.wireframe });
-                const tetrahedron = new THREE.Mesh(geometry, material);
-                scene.add(tetrahedron);
+                this.tetrahedron = new THREE.Mesh(geometry, material);
+                scene.add(this.tetrahedron);
             }
-            rotate(){
-                
+            rotate(time){
+                this.rotation.x = time / this.rotationX;
+                this.rotation.y = time / this.rotationY;
             }
         }
         //adding objects
-        t1 = new Tetrahedron(10, 2, false);
+        t1 = new Tetrahedron(10, 2, false, 10000, 10000);
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -62,13 +66,13 @@
             renderer.render(scene, camera);
 
             // sphere.rotation.x += 0.01;
-            // sphere.rotation.y += 0.01;
-
-            t1.rotation.x = time / 10000;
-            t1.rotation.y = time / 10000;
+            //sphere.rotation.y += 0.01;
+            // tetrahedron.rotation.x = time / 10000;
+            // tetrahedron.rotation.y = time / 10000;
+            t1.rotate(time);
 
             //changing position
-            tetrahedron.position.x = time / 1000;
+            //tetrahedron.position.x = time / 1000;
             //tetrahedron.position.y = time / 1000;
 
             requestAnimationFrame(repeatMe);
