@@ -30,6 +30,8 @@
                 scene.add(this.tetrahedron);
             }
             rotate(time) {
+                // sphere.rotation.x += 0.01;
+                // sphere.rotation.y += 0.01;
                 this.tetrahedron.rotation.x = time / this.rotationX;
                 this.tetrahedron.rotation.y = time / this.rotationY;
             }
@@ -42,24 +44,16 @@
         camera.position.z = 30;
 
         //background is clear
-        var renderer = new THREE.WebGLRenderer( { alpha: true } );
+        var renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
-        renderer.setClearColor( 0x000000, 0 ); // the default white color
+        renderer.setClearColor(0x000000, 0); // the default white color
 
         //adding plane
         const geometry = new THREE.PlaneGeometry(20, 20);
         const material = new THREE.MeshBasicMaterial({ color: 0xffff97, side: THREE.DoubleSide });
         const plane = new THREE.Mesh(geometry, material);
         scene.add(plane);
-
-        // const geometry = new THREE.SphereGeometry(15, 80, 20);
-        // const material = new THREE.MeshBasicMaterial({ color: 0xffff00, wireframe:true});
-        // const sphere = new THREE.Mesh(geometry, material); scene.add(sphere);
-        //scene.add(sphere);
-        // const geometry = new THREE.TetrahedronGeometry(10, 2);
-        // const material = new THREE.MeshLambertMaterial({ color: "rgb(89, 29, 201)", wireframe: false });
-        // const tetrahedron = new THREE.Mesh(geometry, material); scene.add(tetrahedron);
         t1.create();
 
         //adding spotlight
@@ -71,16 +65,11 @@
         function repeatMe(time) {
 
             renderer.render(scene, camera);
-
-            // sphere.rotation.x += 0.01;
-            //sphere.rotation.y += 0.01;
-            // tetrahedron.rotation.x = time / 10000;
-            // tetrahedron.rotation.y = time / 10000;
             t1.rotate(time);
 
             //changing position
-            //tetrahedron.position.x = time / 1000;
-            //tetrahedron.position.y = time / 1000;
+            //tetrahedron.position.x = time / 1000;//right
+            //tetrahedron.position.y = time / 1000;//up
 
             requestAnimationFrame(repeatMe);
         }
