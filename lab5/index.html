@@ -14,7 +14,7 @@
     <script type="text/javascript">
 
         class Tetrahedron {
-            constructor(radius, detail, wireframe, rotationX, rotationY) {
+            constructor(radius, detail, wireframe, rotationX, rotationY, xSpeed, ySpeed,) {
                 this.radius = radius;
                 this.detail = detail;
                 //this.material = material;
@@ -22,6 +22,8 @@
                 this.rotationX = rotationX;
                 this.rotationY = rotationY;
                 this.tetrahedron = null;
+                this.xSpeed = xSpeed;
+                this.ySpeed = ySpeed;
             }
             create() {
                 const geometry = new THREE.TetrahedronGeometry(this.radius, this.detail);// 10, 2
@@ -35,18 +37,21 @@
                 this.tetrahedron.rotation.x = time / this.rotationX;
                 this.tetrahedron.rotation.y = time / this.rotationY;
             }
-            move(){
+            move() {
                 //falling
-                if(this.tetrahedron.position.y > (-10+this.radius)){
-                this.tetrahedron.position.y -= 0.1;
-                }
-                if(this.tetrahedron.position.y <= (-10+this.radius)){
-                this.tetrahedron.position.y += 0.1;
+                this.tetrahedron.position.y -= this.ySpeed;
+            }
+            changeDirection() {
+                // if (this.tetrahedron.position.y > (20 + this.radius)) {
+                //     this.tetrahedron.position.y -= 0.1;
+                // }
+                if (this.tetrahedron.position.y <= (-10 + this.radius)) {
+                    this.ySpeed = this.ySpeed * - 1;
                 }
             }
         }
         //adding objects
-        t1 = new Tetrahedron(7, 2, false, 10000, 10000);
+        t1 = new Tetrahedron(7, 2, false, 10000, 10000, 0.1, 0.1);
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -79,6 +84,7 @@
             renderer.render(scene, camera);
             t1.rotate(time);
             t1.move();
+            t1.changeDirection();
 
             //changing position
             //tetrahedron.position.x = time / 1000;//right
