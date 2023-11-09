@@ -30,8 +30,8 @@
                 scene.add(this.tetrahedron);
             }
             rotate(time) {
-                this.rotation.x = time / this.rotationX;
-                this.rotation.y = time / this.rotationY;
+                this.tetrahedron.rotation.x = time / this.rotationX;
+                this.tetrahedron.rotation.y = time / this.rotationY;
             }
         }
         //adding objects
@@ -41,7 +41,7 @@
         camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 30;
 
-        //background is 
+        //background is clear
         var renderer = new THREE.WebGLRenderer( { alpha: true } );
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
