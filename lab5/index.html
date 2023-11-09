@@ -35,6 +35,9 @@
                 this.tetrahedron.rotation.x = time / this.rotationX;
                 this.tetrahedron.rotation.y = time / this.rotationY;
             }
+            move(){
+                this.tetrahedron.position.x += 0.1;
+            }
         }
         //adding objects
         t1 = new Tetrahedron(10, 2, false, 10000, 10000);
@@ -69,6 +72,7 @@
 
             renderer.render(scene, camera);
             t1.rotate(time);
+            t1.move();
 
             //changing position
             //tetrahedron.position.x = time / 1000;//right
