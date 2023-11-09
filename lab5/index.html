@@ -14,20 +14,20 @@
     <script type="text/javascript">
 
         class Tetrahedron {
-            constructor(radius, detail, wireframe, rotationX, rotationY, xSpeed, ySpeed,) {
+            constructor(radius, detail, wireframe, rotationX, rotationY, xSpeed, ySpeed, color) {
                 this.radius = radius;
                 this.detail = detail;
-                //this.material = material;
                 this.wireframe = wireframe;
                 this.rotationX = rotationX;
                 this.rotationY = rotationY;
                 this.tetrahedron = null;
                 this.xSpeed = xSpeed;
                 this.ySpeed = ySpeed;
+                this.color = color;
             }
             create() {
-                const geometry = new THREE.TetrahedronGeometry(this.radius, this.detail);// 10, 2
-                const material = new THREE.MeshToonMaterial({ color: "rgb(39, 29, 251)", wireframe: this.wireframe });
+                const geometry = new THREE.TetrahedronGeometry(this.radius, this.detail);
+                const material = new THREE.MeshToonMaterial({ color: this.color, wireframe: this.wireframe });
                 this.tetrahedron = new THREE.Mesh(geometry, material);
                 scene.add(this.tetrahedron);
             }
@@ -48,7 +48,7 @@
                     this.xSpeed = this.xSpeed * - 1;
                 }
                 //hitting left "wall"
-                if (this.tetrahedron.position.y <= (-8.5 + this.radius)) {
+                if (this.tetrahedron.position.y <= (-10 + this.radius)) {
                     this.xSpeed = this.xSpeed * - 1;
                 }
                 //hitting top "wall"
@@ -62,7 +62,8 @@
             }
         }
         //adding objects
-        t1 = new Tetrahedron(7, 6, false, 10000, 10000, 0.1, 0.1);
+        t1 = new Tetrahedron(7, 6, false, 10000, 10000, 0.1, 0.1, 0x3D85C6);
+        t2 = new Tetrahedron(7, 6, true, 10000, 10000, 0.1, 0.1, 0xAD2727);
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -83,6 +84,7 @@
         scene.add(plane);
 
         t1.create();
+        t2.create();
 
         //adding spotlight
         var spotLight = new THREE.SpotLight(0xffffff);
@@ -94,8 +96,11 @@
 
             renderer.render(scene, camera);
             t1.rotate(time);
+            t2.rotate(time);
             t1.move();
+            t2.move();
             t1.changeDirection();
+            t2.changeDirection();
 
             //changing position
             //tetrahedron.position.x = time / 1000;//right
