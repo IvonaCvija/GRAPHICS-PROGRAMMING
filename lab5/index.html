@@ -38,13 +38,24 @@
                 this.tetrahedron.rotation.y = time / this.rotationY;
             }
             move() {
+                this.tetrahedron.position.x -= this.xSpeed;
                 //falling
                 this.tetrahedron.position.y -= this.ySpeed;
             }
             changeDirection() {
+                //hitting right "wall"
+                if (this.tetrahedron.position.x > this.radius) {
+                    this.xSpeed = this.xSpeed * - 1;
+                }
+                //hitting left "wall"
+                if (this.tetrahedron.position.y <= (-8.5 + this.radius)) {
+                    this.xSpeed = this.xSpeed * - 1;
+                }
+                //hitting top "wall"
                 if (this.tetrahedron.position.y > (8.5 + this.radius)) {
                     this.ySpeed = this.ySpeed * - 1;
                 }
+                //hitting bottom "wall"
                 if (this.tetrahedron.position.y <= (-10 + this.radius)) {
                     this.ySpeed = this.ySpeed * - 1;
                 }
