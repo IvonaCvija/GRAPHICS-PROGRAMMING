@@ -72,24 +72,35 @@
         //background is clear
         var renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
         renderer.setClearColor(0x000000, 0); // the default white color
-
-        //adding plane
-        const geometry = new THREE.PlaneGeometry(50, 30);
-        const material = new THREE.MeshBasicMaterial({ color: 0xffff97, side: THREE.DoubleSide });
-        const plane = new THREE.Mesh(geometry, material);
-        plane.position.set(0, -10, 0); // Adjust the -10 value to the desired vertical position
-        plane.rotation.x = Math.PI / 2; // rotating plane
-        scene.add(plane);
+        renderer.shadowMap.enabled = true; // enable shadows
+        document.body.appendChild(renderer.domElement);
 
         t1.create();
         t2.create();
 
         //adding spotlight
         var spotLight = new THREE.SpotLight(0xffffff);
-        spotLight.position.set(2, 30, 2);
+        spotLight.position.set(-15, 30, 2);
+        spotLight.castShadow = true;
+        // Define the shadow properties
+        spotLight.shadow.mapSize.width = 1024;
+        spotLight.shadow.mapSize.height = 1024;
+        spotLight.shadow.camera.near = 0.5;
+        spotLight.shadow.camera.far = 200;
         scene.add(spotLight);
+
+        //adding plane
+        const geometry = new THREE.PlaneGeometry(50, 30);
+        const material = new THREE.MeshStandardMaterial({ color: 0xffff97, side: THREE.DoubleSide });
+        const plane = new THREE.Mesh(geometry, material);
+        plane.receiveShadow = true;
+        plane.position.set(0, -10, 0); // Adjust the -10 value to the desired vertical position
+        plane.rotation.x = Math.PI / 2; // rotating plane
+        scene.add(plane);
+
+        t1.tetrahedron.castShadow = true;
+        t2.tetrahedron.castShadow = true;
 
 
         function repeatMe(time) {
