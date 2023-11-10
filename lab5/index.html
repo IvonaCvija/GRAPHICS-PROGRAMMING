@@ -14,7 +14,7 @@
     <script type="text/javascript">
 
         class Tetrahedron {
-            constructor(radius, detail, wireframe, rotationX, rotationY, xSpeed, ySpeed, color) {
+            constructor(radius, detail, wireframe, rotationX, rotationY, xSpeed, ySpeed, zSpeed, color) {
                 this.radius = radius;
                 this.detail = detail;
                 this.wireframe = wireframe;
@@ -23,6 +23,7 @@
                 this.tetrahedron = null;
                 this.xSpeed = xSpeed;
                 this.ySpeed = ySpeed;
+                this.zSpeed = zSpeed;
                 this.color = color;
             }
             create() {
@@ -41,29 +42,45 @@
                 this.tetrahedron.position.x -= this.xSpeed;
                 //falling
                 this.tetrahedron.position.y -= this.ySpeed;
+                this.tetrahedron.position.z -= this.zSpeed;
             }
             changeDirection() {
-                //hitting right "wall"
-                if (this.tetrahedron.position.x > this.radius) {
-                    this.xSpeed = this.xSpeed * - 1;
-                }
-                //hitting left "wall"
-                if (this.tetrahedron.position.y <= (-10 + this.radius)) {
-                    this.xSpeed = this.xSpeed * - 1;
-                }
                 //hitting top "wall"
                 if (this.tetrahedron.position.y > (8.5 + this.radius)) {
                     this.ySpeed = this.ySpeed * - 1;
+                    console.log("Top wall");
                 }
                 //hitting bottom "wall"
                 if (this.tetrahedron.position.y <= (-10 + this.radius)) {
                     this.ySpeed = this.ySpeed * - 1;
+                    console.log("Bottom wall");
                 }
+                //hitting right "wall"
+                if (this.tetrahedron.position.x > 10 + this.radius) {
+                    this.xSpeed = this.xSpeed * - 1;
+                    console.log("Right wall");
+                }
+                //hitting left "wall"
+                if (this.tetrahedron.position.x <= (-10 - this.radius)) {
+                    this.xSpeed = this.xSpeed * - 1;
+                    console.log("Left wall");
+                }
+                if (this.tetrahedron.position.z >= 10 - this.radius) {
+                    this.zSpeed = this.zSpeed * -1;
+                    console.log("Front wall");
+                }
+                if (this.tetrahedron.position.z < -10 + this.radius) {
+                    this.zSpeed = this.zSpeed * -1;
+                    console.log("Back wall");
+                }
+            }
+            gravity() {
+                this.ySpeed += 0.1;
             }
         }
         //adding objects
-        t1 = new Tetrahedron(7, 6, false, 10000, 10000, 0.1, 0.1, 0x3D85C6);
-        t2 = new Tetrahedron(7, 6, true, 10000, 10000, 0.1, 0.1, 0xAD2727);
+        t1 = new Tetrahedron(7, 6, false, 10000, 10000, 0.1, 0.1, 0.1, 0x3D85C6);
+        t2 = new Tetrahedron(7, 6, true, 10000, 10000, 0.1, 0.1, 0.1, 0xAD2727);
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -103,6 +120,18 @@
         const helper = new THREE.CameraHelper(spotLight.shadow.camera);
         scene.add(helper);
 
+        //adding a box
+        //for transparency https://threejs.org/manual/#en/transparency
+        const boxGeometry = new THREE.BoxGeometry(30, 30, 30);
+        const boxMaterial = new THREE.MeshBasicMaterial({
+            color: 0x8585ad,
+            opacity: 0.5,
+            transparent: true,
+        });
+        const cube = new THREE.Mesh(boxGeometry, boxMaterial);
+        cube.position.set(0, 0, 0);
+        scene.add(cube);
+
         t1.tetrahedron.castShadow = true;
         t2.tetrahedron.castShadow = true;
 
@@ -112,6 +141,8 @@
             renderer.render(scene, camera);
             t1.rotate(time);
             t2.rotate(time);
+            // t1.gravity();
+            // t2.gravity();
             t1.move();
             t2.move();
             t1.changeDirection();
