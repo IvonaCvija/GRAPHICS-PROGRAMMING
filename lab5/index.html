@@ -46,7 +46,7 @@
             }
             changeDirection() {
                 //hitting top "wall"
-                if (this.tetrahedron.position.y > (8.5 + this.radius)) {
+                if (this.tetrahedron.position.y > (3.5 + this.radius)) {
                     this.ySpeed = this.ySpeed * - 1;
                     console.log("Top wall");
                 }
@@ -56,7 +56,7 @@
                     console.log("Bottom wall");
                 }
                 //hitting right "wall"
-                if (this.tetrahedron.position.x > 10 + this.radius) {
+                if (this.tetrahedron.position.x > 8 + this.radius) {
                     this.xSpeed = this.xSpeed * - 1;
                     console.log("Right wall");
                 }
@@ -65,7 +65,7 @@
                     this.xSpeed = this.xSpeed * - 1;
                     console.log("Left wall");
                 }
-                if (this.tetrahedron.position.z >= 10 - this.radius) {
+                if (this.tetrahedron.position.z >= 14 - this.radius) {
                     this.zSpeed = this.zSpeed * -1;
                     console.log("Front wall");
                 }
