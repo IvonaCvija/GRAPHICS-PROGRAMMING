@@ -77,6 +77,19 @@
             gravity() {
                 this.ySpeed += 0.1;
             }
+            changingColor() {
+                // .setRGB(r : Float, g : Float, b : Float, colorSpace : string = LinearSRGBColorSpace) : this
+                // r — Red channel value between 0.0 and 1.0.
+                //   g — Green channel value between 0.0 and 1.0.
+                //      b — Blue channel value between 0.0 and 1.0.
+
+                r = 1;
+                g = 0;
+                for (let i = 0; i < 100; i++) {
+
+                    this.color = new THREE.Color(r, 0, 0);
+                }
+            }
         }
         //adding objects
         t1 = new Tetrahedron(7, 6, false, 10000, 10000, 0.1, 0.1, 0.1, 0x3D85C6);
