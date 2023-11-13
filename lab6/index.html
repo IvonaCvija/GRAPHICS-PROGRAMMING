@@ -3,13 +3,25 @@
 
 <head>
     <title>D3.js Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.js"
+        integrity="sha512-NmSTfudjn1FCaFMQ+f4xveBmwRJn5ep8Wu+YOeq+CeExhFtKvwhfKVXFX3tGxoGWxu8Fl83qm9nE8/Hkc1dWZg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <meta charset="UTF-8">
     <style type="text/css"></style>
 </head>
 
 <body>
     <h1>Ivona Cvija</h1>
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+        // Retrieve the JSON data
+        $.getJSON("https://pkgstore.datahub.io/core/co2-ppm/co2-mm-mlo_json/data/aed7eb0d19cbcd90790525d40728b0a8/co2-mm-mlo_json.json", function (data){
+            console.log(data);
+            plotCO2Data(data);
+        });
+
+        
+    </script>
 </body>
 
 </html>
