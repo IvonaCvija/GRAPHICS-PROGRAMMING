@@ -98,22 +98,22 @@
                 //not necessary but adds an offset so that numeric value are visible
                 .attr("transform", "translate("+margin.left + "," + margin.top + ")");
 
-            // // Define the zoom function for x-axis and lines
-            // var zoomX = d3.zoom()
-            //     .scaleExtent([1, Infinity])
-            //     .translateExtent([[0, 0], [width, height]])
-            //     .extent([[0, 0], [width, height]])
-            //     .on("zoom", zoomedX);
+            // Define the zoom function for x-axis and lines
+            var zoomX = d3.zoom()
+                .scaleExtent([1, Infinity])
+                .translateExtent([[0, 0], [width, height]])
+                .extent([[0, 0], [width, height]])
+                .on("zoom", zoomedX);
 
-            // // Apply the zoom behavior to the SVG element for x-axis and lines
-            // svg.append("rect")
-            //     .attr("class", "zoom")
-            //     .attr("width", width)
-            //     .attr("height", height)
-            //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-            //     .call(zoomX)
-            //     .style("fill", "none")
-            //     .style("pointer-events", "all");
+            // Apply the zoom behavior to the SVG element for x-axis and lines
+            svg.append("rect")
+                .attr("class", "zoom")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .call(zoomX)
+                .style("fill", "none")
+                .style("pointer-events", "all");
 
             // Add the axes to the element
             svg.append('g')//append a <g> - group element
@@ -137,7 +137,7 @@
                 .attr('class', 'x label')
                 .attr('text-anchor', 'end')
                 .attr('x', width)
-                .attr('y', height + margin.top + 40)
+                .attr('y', height + margin.bottom + 40)
                 .text('Date');
 
             // y-axis label
@@ -154,7 +154,7 @@
             svg.append('text')
                 .attr('class', 'chart label')
                 .attr('x', width / 2)
-                .attr('y', -margin.top / 2)
+                .attr('y', margin.bottom * 11)
                 .attr('text-anchor', 'middle')
                 .style('font-size', '1.5em') // Increase font size
                 .text('CO2 Concentration Over Time');
@@ -171,23 +171,23 @@
                 .attr("fill", "none")
                 .attr("stroke", "blue");
 
-            // // Define the zoomed function for x-axis and lines
-            // function zoomedX(event) {
-            //     var new_xScale = event.transform.rescaleX(x);
-            //     svg.select(".x.axis").call(xAxis.scale(new_xScale));
+            // Define the zoomed function for x-axis and lines
+            function zoomedX(event) {
+                var new_xScale = event.transform.rescaleX(x);
+                svg.select(".x.axis").call(xAxis.scale(new_xScale));
 
-            //     // Update the paths with the new x and y scales
-            //     svg.selectAll(".line").attr("d", function (d) {
-            //         return valueline(data.map(function (point) {
-            //             return {
-            //                 "Date": point["Date"],
-            //                 "Interpolated": new_xScale(parseDate(point["Date"])),
-            //                 "Trend": trendY(point["Trend"]),
-            //                 "Average": tempY(point["Average"])
-            //             };
-            //         }));
-            //     });
-            // }
+                // Update the paths with the new x and y scales
+                svg.selectAll(".line").attr("d", function (d) {
+                    return valueline(data.map(function (point) {
+                        return {
+                            "Date": point["Date"],
+                            "Interpolated": new_xScale(parseDate(point["Date"])),
+                            "Trend": trendY(point["Trend"]),
+                            "Average": tempY(point["Average"])
+                        };
+                    }));
+                });
+            }
 
             function brushed() {
                 if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
