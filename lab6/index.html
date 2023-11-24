@@ -27,12 +27,25 @@
                 width = 900 - margin.left - margin.right,
                 height = 670 - margin.top - margin.bottom;
 
-            // Create x and y scales dor interpolated value (x-axis) and time
+            // Create x and y scales for interpolated value (x-axis) and time
             var y = d3.scaleLinear()
                 // Atmospheric CO2 values
                 .domain(d3.extent(data, function (d) { return d["Interpolated"] }))
                 // Seems backward because SVG y is down
                 .range([height, 0]);
+
+            //create x and y scales for trend value (x-axis) 
+            var trendY = d3.scaleLinear()
+                .domain(d3.extent(data, function (d) { return d["Trend"] }))
+                //svg is down
+                .range([height, 0]);
+
+            //create x and y scales for trend value (x-axis) 
+            var tempY = d3.scaleLinear()
+                .domain(d3.extent(data, function (d) { return d["Average"] }))
+                //svg is down
+                .range([height, 0]);
+
 
             //parse the date / time
             var parseDate = d3.timeParse("%B %d, %Y"); // Converts string to a date object day/month/year
