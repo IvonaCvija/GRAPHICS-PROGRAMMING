@@ -96,6 +96,11 @@
                 .attr('class', 'y axis')//specify classes
                 .call(yAxis);
 
+            //trend y axis
+            svg.append('g')
+                .attr('class', 'y axis trend line')
+                .attr('transform', 'translate(' + width + ', 0')
+                .call(trendY);
 
         }
     </script>
