@@ -65,6 +65,13 @@
                 .extent([[0, 0], [width, height]])
                 .on("brush end", brushed);
 
+            // draw line - maps x, y coordinates for each data point, using x,y scale functions
+            var valueline = d3.line() 
+                // x and y pixels for each data point
+                .x(function (d) { return x(parseDate(d["Date"])); })
+                .y(function (d) { return y(d["Interpolated"]); });
+
+
 
         }
     </script>
