@@ -63,7 +63,7 @@
 
             //axis x is the d3.scaleTime()
             var xAxis = d3.axisBottom(x)
-            .ticks(d3.timeYear.every(5)); // Adjust the tick frequency as needed
+                .ticks(d3.timeYear.every(5)); // Adjust the tick frequency as needed
 
             //axis y is the d3.scaleLinear
 
@@ -97,9 +97,27 @@
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
 
+            // // Define the zoom function for x-axis and lines
+            // var zoomX = d3.zoom()
+            //     .scaleExtent([1, Infinity])
+            //     .translateExtent([[0, 0], [width, height]])
+            //     .extent([[0, 0], [width, height]])
+            //     .on("zoom", zoomedX);
+
+            // // Apply the zoom behavior to the SVG element for x-axis and lines
+            // svg.append("rect")
+            //     .attr("class", "zoom")
+            //     .attr("width", width)
+            //     .attr("height", height)
+            //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            //     .call(zoomX)
+            //     .style("fill", "none")
+            //     .style("pointer-events", "all");
+
             //add the axes to the element
             svg.append('g')//append a <g> - group element
                 .attr('class', 'x axis')
+                .attr('transform', 'translate(0, ' + height + ')')
                 .call(xAxis);//let the axis do its thing
 
             svg.append('g')
@@ -112,7 +130,7 @@
                 .attr('transform', 'translate(' + width + ', 0')
                 .call(trendY);
 
-             //add the labels
+            //add the labels
             // x-axis label
             svg.append('text')
                 .attr('class', 'x label')
@@ -151,6 +169,24 @@
                 .attr("d", trendvalueline(data))
                 .attr("fill", "none")
                 .attr("stroke", "blue");
+
+            // // Define the zoomed function for x-axis and lines
+            // function zoomedX(event) {
+            //     var new_xScale = event.transform.rescaleX(x);
+            //     svg.select(".x.axis").call(xAxis.scale(new_xScale));
+
+            //     // Update the paths with the new x and y scales
+            //     svg.selectAll(".line").attr("d", function (d) {
+            //         return valueline(data.map(function (point) {
+            //             return {
+            //                 "Date": point["Date"],
+            //                 "Interpolated": new_xScale(parseDate(point["Date"])),
+            //                 "Trend": trendY(point["Trend"]),
+            //                 "Average": tempY(point["Average"])
+            //             };
+            //         }));
+            //     });
+            // }
 
             function brushed() {
                 if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
