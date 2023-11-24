@@ -39,54 +39,51 @@
             var y = d3.scaleLinear()
                 // Atmospheric CO2 values
                 .domain(d3.extent(data, function (d) { return d["Interpolated"] }))
-                // Seems backward because SVG y is down
                 .range([height, 0]);
 
-            //create x and y scales for trend value (x-axis) 
+            // Create x and y scales for trend value (x-axis) 
             var trendY = d3.scaleLinear()
                 .domain(d3.extent(data, function (d) { return d["Trend"] }))
                 //svg is down
                 .range([height, 0]);
 
-            //create x and y scales for trend value (x-axis) 
+            // Create x and y scales for trend value (x-axis)  
             var tempY = d3.scaleLinear()
                 .domain(d3.extent(data, function (d) { return d["Average"] }))
                 //svg is down
                 .range([height, 0]);
 
-            //parse the date / time
+            // Parse the date / time
             var parseDate = d3.timeParse("%Y-%m-%d"); // Converts string to a date object day/month/year
 
             var x = d3.scaleTime()
                 .domain(d3.extent(data, function (d) { return parseDate(d["Date"]); }))
                 .range([0, width]);
 
-            //axis x is the d3.scaleTime()
+            // Axis x is the d3.scaleTime()
             var xAxis = d3.axisBottom(x)
                 .ticks(d3.timeYear.every(5)); // Adjust the tick frequency as needed
 
-            //axis y is the d3.scaleLinear
-
+            // Axis y is the d3.scaleLinear
             var yAxis = d3.axisLeft(y)
                 .ticks(3);
 
-            //variable for the brush
+            // Variable for the brush
             var brush = d3.brushX()
                 .extent([[0, 0], [width, height]])
                 .on("brush end", brushed);
 
-            // draw line - maps x, y coordinates for each data point, using x,y scale functions
+            // Draw line - maps x, y coordinates for each data point, using x,y scale functions
             var valueline = d3.line()
-                // x and y pixels for each data point
                 .x(function (d) { return x(parseDate(d["Date"])); })
                 .y(function (d) { return y(d["Interpolated"]); });
 
-            //add trend line
+            // Add trend line
             var trendvalueline = d3.line()
                 .x(function (d) { return x(parseDate(d["Date"])); }) // x pixel for each data point
                 .y(function (d) { return trendY(d["Trend"]); }); // y pixel for each data point
 
-            //add trend line
+            // Add temp line
             var tempvalueline = d3.line()
                 .x(function (d) { return x(parseDate(d["Date"])); }) // x pixel for each data point
                 .y(function (d) { return tempY(d["Average"]); }); // y pixel for each data point
@@ -114,23 +111,23 @@
             //     .style("fill", "none")
             //     .style("pointer-events", "all");
 
-            //add the axes to the element
+            // Add the axes to the element
             svg.append('g')//append a <g> - group element
                 .attr('class', 'x axis')
                 .attr('transform', 'translate(0, ' + height + ')')
-                .call(xAxis);//let the axis do its thing
+                .call(xAxis);
 
             svg.append('g')
-                .attr('class', 'y axis')//specify classes
+                .attr('class', 'y axis')
                 .call(yAxis);
 
-            //trend y axis
+            // Trend y axis
             svg.append('g')
                 .attr('class', 'y axis trend line')
                 .attr('transform', 'translate(' + width + ', 0')
                 .call(trendY);
 
-            //add the labels
+            // Add the labels
             // x-axis label
             svg.append('text')
                 .attr('class', 'x label')
@@ -139,7 +136,7 @@
                 .attr('y', height + margin.top + 40)
                 .text('Date');
 
-            //y-axis label
+            // y-axis label
             svg.append('text')
                 .attr('class', 'y label')
                 .attr('text-anchor', 'end')
@@ -149,7 +146,7 @@
                 .attr('transform', 'rotate(-90)')
                 .text('CO2 Concentration (ppm)');
 
-            //chart label
+            // Chart label
             svg.append('text')
                 .attr('class', 'chart label')
                 .attr('x', width / 2)
@@ -158,13 +155,13 @@
                 .style('font-size', '1.5em') // Increase font size
                 .text('CO2 Concentration Over Time');
 
-            //add the valueline path
+            // Add the valueline path
             svg.append("path")
                 .attr("d", valueline(data))
                 .attr("fill", "none")
                 .attr("stroke", "red");
 
-            //add the trendvalueline path
+            // Add the trendvalueline path
             svg.append("path")
                 .attr("d", trendvalueline(data))
                 .attr("fill", "none")
