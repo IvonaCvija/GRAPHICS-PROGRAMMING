@@ -63,7 +63,7 @@
 
             //axis x is the d3.scaleTime()
             var xAxis = d3.axisBottom(x)
-                .ticks(3);//number of ticks
+            .ticks(d3.timeYear.every(5)); // Adjust the tick frequency as needed
 
             //axis y is the d3.scaleLinear
 
