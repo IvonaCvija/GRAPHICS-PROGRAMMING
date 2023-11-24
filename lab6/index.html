@@ -54,6 +54,14 @@
                 .domain(d3.extent(data, function (d) { return parseDate(d["Date"]); }))
                 .range([0, width]);
 
+            //axis x is the d3.scaleTime()
+            var xAxis = d3.axisBottom(x)
+                .ticks(3);//number of ticks
+            //axis y is the d3.scaleLinear
+            var yAxis = d3.axisLeft(y)
+                
+
+
         }
     </script>
 </body>
