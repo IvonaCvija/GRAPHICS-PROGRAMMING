@@ -75,7 +75,6 @@
                 .extent([[0, 0], [width, height]])
                 .on("brush end", brushed);
 
-
             // draw line - maps x, y coordinates for each data point, using x,y scale functions
             var valueline = d3.line()
                 // x and y pixels for each data point
@@ -112,6 +111,17 @@
                 .attr('class', 'y axis trend line')
                 .attr('transform', 'translate(' + width + ', 0')
                 .call(trendY);
+
+            function brushed() {
+                if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+                var s = d3.event.selection || x.range();
+                x.domain(s.map(x.invert, x));
+                svg.select(".line").attr("d", valueline);
+                focus.select(".axis--x").call(xAxis);
+                svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+                    .scale(width / (s[1] - s[0]))
+                    .translate(-s[0], 0));
+            }
 
         }
     </script>
