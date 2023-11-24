@@ -66,12 +66,19 @@
                 .on("brush end", brushed);
 
             // draw line - maps x, y coordinates for each data point, using x,y scale functions
-            var valueline = d3.line() 
+            var valueline = d3.line()
                 // x and y pixels for each data point
                 .x(function (d) { return x(parseDate(d["Date"])); })
                 .y(function (d) { return y(d["Interpolated"]); });
 
 
+
+
+            var svg = d3.select('body')
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
 
         }
     </script>
