@@ -59,7 +59,11 @@
                 .ticks(3);//number of ticks
             //axis y is the d3.scaleLinear
             var yAxis = d3.axisLeft(y)
-                
+                .ticks(3);
+            //variable for the brush
+            var brush = d3.brushX()
+                .extent([[0, 0], [width, height]])
+                .on("brush end", brushed);
 
 
         }
