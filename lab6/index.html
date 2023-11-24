@@ -94,6 +94,10 @@
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
 
+                .append("g")
+                //not necessary but adds an offset so that numeric value are visible
+                .attr("transform", "translate("+margin.left + "," + margin.top + ")");
+
             // // Define the zoom function for x-axis and lines
             // var zoomX = d3.zoom()
             //     .scaleExtent([1, Infinity])
