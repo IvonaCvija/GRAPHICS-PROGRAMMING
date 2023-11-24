@@ -11,6 +11,14 @@
     <style type="text/css"></style>
 </head>
 
+<style>
+    .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+    }
+</style>
+
 <body>
     <h1>Ivona Cvija</h1>
     <script type="text/javascript">
@@ -46,7 +54,6 @@
                 //svg is down
                 .range([height, 0]);
 
-
             //parse the date / time
             var parseDate = d3.timeParse("%B %d, %Y"); // Converts string to a date object day/month/year
 
@@ -57,13 +64,17 @@
             //axis x is the d3.scaleTime()
             var xAxis = d3.axisBottom(x)
                 .ticks(3);//number of ticks
+
             //axis y is the d3.scaleLinear
+
             var yAxis = d3.axisLeft(y)
                 .ticks(3);
+
             //variable for the brush
             var brush = d3.brushX()
                 .extent([[0, 0], [width, height]])
                 .on("brush end", brushed);
+
 
             // draw line - maps x, y coordinates for each data point, using x,y scale functions
             var valueline = d3.line()
