@@ -71,8 +71,15 @@
                 .x(function (d) { return x(parseDate(d["Date"])); })
                 .y(function (d) { return y(d["Interpolated"]); });
 
+            //add trend line
+            var trendvalueline = d3.line()
+                .x(function (d) { return x(parseDate(d["Date"])); }) // x pixel for each data point
+                .y(function (d) { return trendY(d["Trend"]); }); // y pixel for each data point
 
-
+            //add trend line
+            var tempvalueline = d3.line()
+                .x(function (d) { return x(parseDate(d["Date"])); }) // x pixel for each data point
+                .y(function (d) { return tempY(d["Average"]); }); // y pixel for each data point
 
             var svg = d3.select('body')
                 .append("svg")
