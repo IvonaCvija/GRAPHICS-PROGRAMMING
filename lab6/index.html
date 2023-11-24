@@ -55,7 +55,7 @@
                 .range([height, 0]);
 
             //parse the date / time
-            var parseDate = d3.timeParse("%B %d, %Y"); // Converts string to a date object day/month/year
+            var parseDate = d3.timeParse("%Y-%m-%d"); // Converts string to a date object day/month/year
 
             var x = d3.scaleTime()
                 .domain(d3.extent(data, function (d) { return parseDate(d["Date"]); }))
@@ -116,7 +116,7 @@
                 if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
                 var s = d3.event.selection || x.range();
                 x.domain(s.map(x.invert, x));
-                svg.select(".line").attr("d", valueline);
+                svg.select(".x.axis").attr("d", valueline);
                 focus.select(".axis--x").call(xAxis);
                 svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
                     .scale(width / (s[1] - s[0]))
