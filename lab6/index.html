@@ -80,6 +80,16 @@
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
 
+            //add the axes to the element
+            svg.append('g')//append a <g> - group element
+                .attr('class', 'x axis')
+                .call(xAxis);//let the axis do its thing
+
+            svg.append('g')
+                .attr('class', 'y axis')//specify classes
+                .call(yAxis);
+
+
         }
     </script>
 </body>
