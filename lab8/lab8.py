@@ -3,7 +3,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 #original image
-imgOrig = cv2.imread('ATU.jpg',)
+#imgOrig = cv2.imread('ATU.jpg',)
+imgOrig = cv2.imread('st_martin_today.jpg',)
 #cv2.imshow('Original', imgOrig)
 
 #grayscaling an image
