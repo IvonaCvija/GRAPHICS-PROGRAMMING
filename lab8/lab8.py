@@ -33,17 +33,25 @@ plt.title('13x13 Blur'), plt.xticks([]), plt.yticks([])
 #showing plot 1
 plt.show()
 
-#Sobel - detecting edges
+#Sobel - edge detection
 sobelHorizontal = cv2.Sobel(gray_image,cv2.CV_64F,1,0,ksize=5) # x dir
 sobelVertical = cv2.Sobel(gray_image,cv2.CV_64F,0,1,ksize=5) # y dir
+sobelBoth = cv2.addWeighted(sobelHorizontal,1,sobelVertical,1,0)
 
-nrows2 = 1
+#Canny - edge detection
+canny = cv2.Canny(gray_image,100,200)
+
+nrows2 = 2
 ncols2 = 2
 
 plt.subplot(nrows2, ncols2,1),plt.imshow(sobelHorizontal, cmap = 'gray')
 plt.title('Sobel Horizontal'), plt.xticks([]), plt.yticks([])
 plt.subplot(nrows2, ncols2,2),plt.imshow(sobelVertical, cmap = 'gray')
 plt.title('Sobel Vertical'), plt.xticks([]), plt.yticks([])
+plt.subplot(nrows2, ncols2,3),plt.imshow(sobelBoth, cmap = 'gray')
+plt.title('Sobel Horizontal and Vertical'), plt.xticks([]), plt.yticks([])
+plt.subplot(nrows2, ncols2,4),plt.imshow(canny, cmap = 'gray')
+plt.title('Canny Edge Image'), plt.xticks([]), plt.yticks([])
 
 #showing plot 2
 plt.show()
