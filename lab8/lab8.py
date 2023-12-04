@@ -40,7 +40,7 @@ sobelVertical = cv2.Sobel(gray_image,cv2.CV_64F,0,1,ksize=5) # y dir
 sobelBoth = cv2.addWeighted(sobelHorizontal,1,sobelVertical,1,0)
 
 #Canny - edge detection
-canny = cv2.Canny(gray_image,100,200)
+canny = cv2.Canny(gray_image,165,380)
 
 nrows2 = 2
 ncols2 = 2
