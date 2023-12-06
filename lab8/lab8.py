@@ -6,10 +6,12 @@ from matplotlib import pyplot as plt
 #imgOrig = cv2.imread('ATU.jpg',)
 imgOrig = cv2.imread('st_martin_today.jpg',)
 #cv2.imshow('Original', imgOrig)
+# cv2.waitKey(0)
 
 #grayscaling an image
 gray_image = cv2.cvtColor(imgOrig, cv2.COLOR_BGR2GRAY)
 #cv2.imshow('Grayscale', gray_image)
+# cv2.waitKey(0)
 
 #(KernelSizeWidth, KernelSizeHeight) = 3
 #blurred image
