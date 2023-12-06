@@ -42,8 +42,23 @@ sobelBoth = cv2.addWeighted(sobelHorizontal,1,sobelVertical,1,0)
 #Canny - edge detection
 canny = cv2.Canny(gray_image,165,380)
 
-nrows2 = 2
-ncols2 = 2
+#thresholding
+# If f (x, y) < T 
+#    then f (x, y) = 0 
+# else 
+#    f (x, y) = 255
+
+# where 
+# f (x, y) = Coordinate Pixel Value
+# T = Threshold Value.
+#cv2.threshold(source, thresholdValue, maxVal, thresholdingTechnique) 
+# all pixels value above 120 will be set to 255 
+ret, imgWithThreshold = cv2.threshold(gray_image, 120, 255, cv2.THRESH_BINARY) 
+ret, imgWithThreshold2 = cv2.threshold(gray_image, 160, 255, cv2.THRESH_BINARY_INV)
+ret, imgWithThreshold3 = cv2.threshold(gray_image, 120, 255, cv2.THRESH_TRUNC)
+
+nrows2 = 3
+ncols2 = 3
 
 plt.subplot(nrows2, ncols2,1),plt.imshow(sobelHorizontal, cmap = 'gray')
 plt.title('Sobel Horizontal'), plt.xticks([]), plt.yticks([])
@@ -53,6 +68,14 @@ plt.subplot(nrows2, ncols2,3),plt.imshow(sobelBoth, cmap = 'gray')
 plt.title('Sobel Horizontal and Vertical'), plt.xticks([]), plt.yticks([])
 plt.subplot(nrows2, ncols2,4),plt.imshow(canny, cmap = 'gray')
 plt.title('Canny Edge Image'), plt.xticks([]), plt.yticks([])
+plt.subplot(nrows2, ncols2,5),plt.imshow(imgWithThreshold, cmap = 'gray')
+plt.title('Image With Threshold '), plt.xticks([]), plt.yticks([])
+plt.subplot(nrows2, ncols2,6),plt.imshow(imgWithThreshold2, cmap = 'gray')
+plt.title('Image With Threshold2 '), plt.xticks([]), plt.yticks([])
+plt.subplot(nrows2, ncols2,7),plt.imshow(imgWithThreshold3, cmap = 'gray')
+plt.title('Image With Threshold3 '), plt.xticks([]), plt.yticks([])
+
 
 #showing plot 2
 plt.show()
+
