@@ -54,8 +54,8 @@ canny = cv2.Canny(gray_image,165,380)
 #cv2.threshold(source, thresholdValue, maxVal, thresholdingTechnique) 
 # all pixels value above 120 will be set to 255 
 ret, imgWithThreshold = cv2.threshold(gray_image, 120, 255, cv2.THRESH_BINARY) 
-ret, imgWithThreshold2 = cv2.threshold(gray_image, 160, 255, cv2.THRESH_BINARY_INV)
-ret, imgWithThreshold3 = cv2.threshold(gray_image, 120, 255, cv2.THRESH_TRUNC)
+ret, imgWithThreshold2 = cv2.threshold(gray_image, 120, 255, cv2.THRESH_BINARY_INV) #Binary inverted
+ret, imgWithThreshold3 = cv2.threshold(gray_image, 120, 255, cv2.THRESH_TRUNC) #Truncate 
 
 nrows2 = 3
 ncols2 = 3
