@@ -80,4 +80,3 @@ plt.title('Image With Threshold3 '), plt.xticks([]), plt.yticks([])
 
 #showing plot 2
 plt.show()
-
