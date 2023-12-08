@@ -37,12 +37,12 @@ plt.title('13x13 Blur'), plt.xticks([]), plt.yticks([])
 plt.show()
 
 #Sobel - edge detection
-sobelHorizontal = cv2.Sobel(img13x13Blur,cv2.CV_64F,1,0,ksize=5) # x dir
-sobelVertical = cv2.Sobel(img13x13Blur,cv2.CV_64F,0,1,ksize=5) # y dir
+sobelHorizontal = cv2.Sobel(img3x3Blur,cv2.CV_64F,1,0,ksize=5) # x dir
+sobelVertical = cv2.Sobel(img3x3Blur,cv2.CV_64F,0,1,ksize=5) # y dir
 sobelBoth = cv2.addWeighted(sobelHorizontal,1,sobelVertical,1,0)
 
 #Canny - edge detection
-canny = cv2.Canny(img13x13Blur,165,380)
+canny = cv2.Canny(img3x3Blur,165,380)
 
 #thresholding
 # If f (x, y) < T 
