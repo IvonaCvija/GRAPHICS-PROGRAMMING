@@ -33,12 +33,14 @@ cv2.waitKey(0)
 nrows = 2
 ncols = 2
 #plot
-plt.subplot(nrows, ncols,1),plt.imshow(imgOrig, cmap = 'gray')
+plt.subplot(nrows, ncols,1),plt.imshow(cv2.cvtColor(imgOrig, 
+cv2.COLOR_BGR2RGB), cmap = 'gray')
 plt.title(' Original'), plt.xticks([]), plt.yticks([])
-plt.subplot(nrows, ncols,2),plt.imshow(gray_image, cmap = 'gray')
+plt.subplot(nrows, ncols,2),plt.imshow(cv2.cvtColor(gray_image, 
+cv2.COLOR_BGR2RGB), cmap = 'gray')
 plt.title(' Gray'), plt.xticks([]), plt.yticks([])
-plt.subplot(nrows, ncols,3),plt.imshow(imgHarris, cmap = 'gray')
+plt.subplot(nrows, ncols,3),plt.imshow(cv2.cvtColor(imgHarris, 
+cv2.COLOR_BGR2RGB), cmap = 'gray')
 plt.title(' Harris'), plt.xticks([]), plt.yticks([])
-
 
 plt.show()
