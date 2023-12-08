@@ -22,7 +22,7 @@ for i in range(len(dst)):
                     cv2.circle(imgHarris,(j,i),3,(120, 70, 185),-1)
 
 #Shi Tomasi
-corners = cv2.goodFeaturesToTrack(gray_image,45,0.01,10)
+corners = cv2.goodFeaturesToTrack(gray_image,55,0.01,10)
 
 #deep copy for Shi Tomasi
 imgShiTomasi = copy.deepcopy(imgOrig)
@@ -30,7 +30,6 @@ imgShiTomasi = copy.deepcopy(imgOrig)
 for i in corners:
     x,y = i.ravel()
     cv2.circle(imgShiTomasi,(x,y),3,(20, 252, 197),-1)
-
 
 #showing images
 # cv2.imshow('Original', imgOrig)
