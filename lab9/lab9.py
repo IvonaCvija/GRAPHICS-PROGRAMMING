@@ -8,8 +8,9 @@ imgOrig1 = cv2.imread('ATU1.jpg',)
 imgOrig2 = cv2.imread('ATU2.jpg',)
 
 # imgOriginal = cv2.imread('cat.jpg',)
-# imgOriginal = cv2.imread('temple.jpg',)
 imgOriginal = cv2.imread('malta.jpg',)
+
+img = cv2.imread('temple.jpg',)
 
 ORBImgOrig1 = cv2.imread('coke.jpg',)
 ORBImgOrig2 = cv2.imread('cokepolarbear.jpg',)
@@ -100,6 +101,10 @@ draw_params = dict(matchColor = (0,255,0),
                 .DrawMatchesFlags_DEFAULT)
 imgORBFlann = cv2.drawMatchesKnn(imgOrig1,kp1,imgOrig2,kp2,matches,None,**draw_params)
 
+#RGB SPLIT
+#Split Image with cv2.split
+blue,green,red = cv2.split(img)
+
 #PLOT
 #rows and colums for the plot
 nrows = 2
@@ -126,3 +131,25 @@ plt.show()
 #ORB BruteForce and Flann
 plt.imshow(imgORBBruteForce),plt.show()
 plt.imshow(imgORBFlann),plt.show()
+
+#RGB Channels
+#rows and colums for the plot
+nrows = 1
+ncols = 3
+
+#Display Red Channel
+plt.subplot(nrows, ncols, 1)
+plt.imshow(red, cmap='gray')
+plt.title('Red'), plt.xticks([]), plt.yticks([])
+
+#Display Green Channel
+plt.subplot(nrows, ncols, 2)
+plt.imshow(green, cmap='gray')
+plt.title('Green'), plt.xticks([]), plt.yticks([])
+
+#Display Blue Channel
+plt.subplot(nrows, ncols, 3)
+plt.imshow(blue, cmap='gray')
+plt.title('Blue'), plt.xticks([]), plt.yticks([])
+
+plt.show()
