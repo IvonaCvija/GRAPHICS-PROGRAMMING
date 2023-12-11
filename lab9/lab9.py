@@ -4,7 +4,8 @@ from matplotlib import pyplot as plt
 import copy
 
 #adding images
-imgOrig = cv2.imread('ATU1.jpg',)
+#imgOrig = cv2.imread('ATU1.jpg',)
+imgOrig = cv2.imread('cat.jpg',)
 
 #greyscaling
 gray_image = cv2.cvtColor(imgOrig, cv2.COLOR_BGR2GRAY)
@@ -15,7 +16,7 @@ dst = cv2.cornerHarris(gray_image, 2, 3, 0.04)
 #deep copy for Harris
 imgHarris = copy.deepcopy(imgOrig)
 
-threshold = 0.35; #number between 0 and 1
+threshold = 0.15; #number between 0 and 1
 for i in range(len(dst)):
     for j in range(len(dst[i])):
             if dst[i][j] > (threshold*dst.max()):
@@ -43,6 +44,9 @@ kp, des = orb.compute(imgOrig, kp)
 
 # draw only keypoints location,not size and orientation
 imgORB = cv2.drawKeypoints(imgOrig, kp, None, color=(0,255,0), flags=0)
+
+#ORB BRUTE-FORCE
+
 
 #showing images
 # cv2.imshow('Original', imgOrig)
