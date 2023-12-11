@@ -4,13 +4,15 @@ from matplotlib import pyplot as plt
 import copy
 
 #adding images
-imgOrig1 = cv2.imread('ATU1.jpg',)
+imgOrig1 = cv2.imread('ATU1.jpg',) #orb
 imgOrig2 = cv2.imread('ATU2.jpg',)
 
-# imgOriginal = cv2.imread('cat.jpg',)
-imgOriginal = cv2.imread('malta.jpg',)
+imgOriginal = cv2.imread('malta.jpg',) #harris, shi tomasi 
 
-img = cv2.imread('temple.jpg',)
+#imgCD = cv2.imread('cat.jpg',) #contour detection
+imgCD = cv2.imread('shapes.jpg',)
+
+img = cv2.imread('temple.jpg',) #rgb image
 
 ORBImgOrig1 = cv2.imread('coke.jpg',)
 ORBImgOrig2 = cv2.imread('cokepolarbear.jpg',)
@@ -19,6 +21,7 @@ ORBImgOrig2 = cv2.imread('cokepolarbear.jpg',)
 gray_image = cv2.cvtColor(imgOriginal, cv2.COLOR_BGR2GRAY)
 ORBgray_image1 = cv2.cvtColor(ORBImgOrig1, cv2.COLOR_BGR2GRAY) #coke
 ORBgray_image2 = cv2.cvtColor(ORBImgOrig2, cv2.COLOR_BGR2GRAY)  #polar bear with coke
+gray_imageCD = cv2.cvtColor(imgCD, cv2.COLOR_BGR2GRAY)
 
 #Harris corners
 dst = cv2.cornerHarris(gray_image, 2, 3, 0.04)
@@ -105,6 +108,21 @@ imgORBFlann = cv2.drawMatchesKnn(imgOrig1,kp1,imgOrig2,kp2,matches,None,**draw_p
 #Split Image with cv2.split
 blue,green,red = cv2.split(img)
 
+#Contour Detection
+#canny
+# img3x3Blur = cv2.GaussianBlur(gray_imageCD,(3, 3),0) #3x3
+# canny = cv2.Canny(img3x3Blur,165,380)
+
+#thresholding
+ret, thresh = cv2.threshold(gray_imageCD, 125, 255, 0)
+
+#detect contours
+contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+copy_imgCD = imgCD.copy()
+cv2.drawContours(copy_imgCD,contours,-1,(0,0,255),2)
+
+
 #PLOT
 #rows and colums for the plot
 nrows = 2
@@ -152,4 +170,16 @@ plt.subplot(nrows, ncols, 3)
 plt.imshow(blue, cmap='gray')
 plt.title('Blue'), plt.xticks([]), plt.yticks([])
 
+plt.show()
+
+#Contour Detection
+#rows and colums for the plot
+nrows = 1
+ncols = 2
+plt.subplot(nrows, ncols,1)
+plt.imshow(cv2.cvtColor(imgCD, cv2.COLOR_BGR2RGB), cmap = 'gray')
+plt.title(' Original '), plt.xticks([]), plt.yticks([])
+plt.subplot(nrows, ncols,2)
+plt.imshow(cv2.cvtColor(copy_imgCD, cv2.COLOR_BGR2RGB), cmap = 'gray')
+plt.title(' Contour Detection '), plt.xticks([]), plt.yticks([])
 plt.show()
