@@ -22,26 +22,35 @@ for i in range(len(dst)):
                     cv2.circle(imgHarris,(j,i),3,(120, 70, 185),-1)
 
 #Shi Tomasi
-corners = cv2.goodFeaturesToTrack(gray_image,55,0.01,10)
+corners = cv2.goodFeaturesToTrack(gray_image,88,0.01,10)
 
 #deep copy for Shi Tomasi
 imgShiTomasi = copy.deepcopy(imgOrig)
 
 for i in corners:
-    x,y = i.ravel()
-    cv2.circle(imgShiTomasi,(x,y),3,(20, 252, 197),-1)
+    x, y = i[0]  
+    cv2.circle(imgShiTomasi, (int(x), int(y)), 3, (20, 252, 197), -1)
+
+#ORB
+# Initiate ORB detector
+orb = cv2.ORB_create()
+
+# find the keypoints with ORB
+kp = orb.detect(imgOrig,None)
+
+# compute the descriptors with ORB
+kp, des = orb.compute(imgOrig, kp)
+
+# draw only keypoints location,not size and orientation
+imgORB = cv2.drawKeypoints(imgOrig, kp, None, color=(0,255,0), flags=0)
 
 #showing images
 # cv2.imshow('Original', imgOrig)
 # cv2.waitKey(0)
-# cv2.imshow('GrayScale', gray_image)
-# cv2.waitKey(0)
-# cv2.imshow('Harris corners', imgHarris)
-# cv2.waitKey(0)
 
 #rows and colums for the plot
 nrows = 2
-ncols = 2
+ncols = 3
 #plot
 plt.subplot(nrows, ncols,1),plt.imshow(cv2.cvtColor(imgOrig, 
 cv2.COLOR_BGR2RGB), cmap = 'gray')
@@ -52,8 +61,11 @@ plt.title(' Gray '), plt.xticks([]), plt.yticks([])
 plt.subplot(nrows, ncols,3),plt.imshow(cv2.cvtColor(imgHarris, 
 cv2.COLOR_BGR2RGB), cmap = 'gray')
 plt.title(' Harris '), plt.xticks([]), plt.yticks([])
-plt.subplot(nrows, ncols,4),plt.imshow(cv2.cvtColor(imgShiTomasi, 
-cv2.COLOR_BGR2RGB), cmap = 'gray')
+plt.subplot(nrows, ncols,4)
+plt.imshow(cv2.cvtColor(imgShiTomasi, cv2.COLOR_BGR2RGB), cmap = 'gray')
 plt.title(' Shi Tomasi '), plt.xticks([]), plt.yticks([])
+plt.subplot(nrows, ncols,5)
+plt.imshow(cv2.cvtColor(imgORB, cv2.COLOR_BGR2RGB), cmap = 'gray')
+plt.title(' ORB '), plt.xticks([]), plt.yticks([])
 
 plt.show()
