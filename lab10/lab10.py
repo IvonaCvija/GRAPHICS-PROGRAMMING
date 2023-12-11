@@ -17,7 +17,7 @@ cap = cv2.VideoCapture(video_path)
 track_history = defaultdict(lambda: [])
 
 #https://github.com/ultralytics/ultralytics/issues/3399
-
+#https://www.freecodecamp.org/news/how-to-detect-objects-in-images-using-yolov8/
 # Loop through the video frames
 while cap.isOpened():
     # Read a frame from the video
