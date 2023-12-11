@@ -12,7 +12,7 @@ imgOriginal = cv2.imread('malta.jpg',) #harris, shi tomasi
 #imgCD = cv2.imread('cat.jpg',) #contour detection
 imgCD = cv2.imread('shapes.jpg',)
 
-img = cv2.imread('temple.jpg',) #rgb image
+img = cv2.imread('temple.jpg',) #rgb, hsv image
 
 ORBImgOrig1 = cv2.imread('coke.jpg',)
 ORBImgOrig2 = cv2.imread('cokepolarbear.jpg',)
@@ -105,14 +105,18 @@ draw_params = dict(matchColor = (0,255,0),
 imgORBFlann = cv2.drawMatchesKnn(imgOrig1,kp1,imgOrig2,kp2,matches,None,**draw_params)
 
 #RGB SPLIT
+#https://machinelearningknowledge.ai/split-and-merge-image-color-space-channels-in-opencv-and-numpy/
 #Split Image with cv2.split
 blue,green,red = cv2.split(img)
 
-#Contour Detection
-#canny
-# img3x3Blur = cv2.GaussianBlur(gray_imageCD,(3, 3),0) #3x3
-# canny = cv2.Canny(img3x3Blur,165,380)
+#HSV colorspace has three channels – Hue, Saturation, and value
+#creating HSV image
+imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+# Split the HSV image into its components
+h_img, s_img, v_img = cv2.split(imgHSV)
 
+#Contour Detection
+#https://medium.com/mlearning-ai/how-to-detect-contours-in-an-image-in-python-using-opencv-3c245cb1d4d
 #thresholding
 ret, thresh = cv2.threshold(gray_imageCD, 125, 255, 0)
 
@@ -152,23 +156,48 @@ plt.imshow(imgORBFlann),plt.show()
 
 #RGB Channels
 #rows and colums for the plot
-nrows = 1
-ncols = 3
+nrows = 2
+ncols = 4
+
+#Original
+plt.subplot(nrows, ncols, 1)
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.title('Original'), plt.xticks([]), plt.yticks([])
 
 #Display Red Channel
-plt.subplot(nrows, ncols, 1)
-plt.imshow(red, cmap='gray')
+plt.subplot(nrows, ncols, 2)
+plt.imshow(cv2.cvtColor(red, cv2.COLOR_BGR2RGB))
 plt.title('Red'), plt.xticks([]), plt.yticks([])
 
 #Display Green Channel
-plt.subplot(nrows, ncols, 2)
-plt.imshow(green, cmap='gray')
+plt.subplot(nrows, ncols, 3)
+plt.imshow(cv2.cvtColor(green, cv2.COLOR_BGR2RGB))
 plt.title('Green'), plt.xticks([]), plt.yticks([])
 
 #Display Blue Channel
-plt.subplot(nrows, ncols, 3)
-plt.imshow(blue, cmap='gray')
+plt.subplot(nrows, ncols, 4)
+plt.imshow(cv2.cvtColor(blue, cv2.COLOR_BGR2RGB))
 plt.title('Blue'), plt.xticks([]), plt.yticks([])
+
+#HSV
+plt.subplot(nrows, ncols, 5)
+plt.imshow(cv2.cvtColor(imgHSV, cv2.COLOR_BGR2RGB))
+plt.title('HSV'), plt.xticks([]), plt.yticks([])
+
+#Hue
+plt.subplot(nrows, ncols, 6)
+plt.imshow(cv2.cvtColor(h_img, cv2.COLOR_BGR2RGB))
+plt.title('Hue'), plt.xticks([]), plt.yticks([])
+
+#Saturation
+plt.subplot(nrows, ncols, 7)
+plt.imshow(cv2.cvtColor(s_img, cv2.COLOR_BGR2RGB))
+plt.title('Saturation'), plt.xticks([]), plt.yticks([])
+
+#Value
+plt.subplot(nrows, ncols, 8)
+plt.imshow(cv2.cvtColor(v_img, cv2.COLOR_BGR2RGB))
+plt.title('Value'), plt.xticks([]), plt.yticks([])
 
 plt.show()
 
