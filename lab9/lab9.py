@@ -9,10 +9,10 @@ imgOrig2 = cv2.imread('ATU2.jpg',)
 
 imgOriginal = cv2.imread('malta.jpg',) #harris, shi tomasi 
 
-#imgCD = cv2.imread('cat.jpg',) #contour detection
-imgCD = cv2.imread('shapes.jpg',)
+imgCD = cv2.imread('temple.jpg',) #contour detection
+#imgCD = cv2.imread('shapes.jpg',)
 
-img = cv2.imread('temple.jpg',) #rgb, hsv image
+img = cv2.imread('cat.jpg',) #rgb, hsv image
 
 ORBImgOrig1 = cv2.imread('coke.jpg',)
 ORBImgOrig2 = cv2.imread('cokepolarbear.jpg',)
@@ -108,6 +108,12 @@ imgORBFlann = cv2.drawMatchesKnn(imgOrig1,kp1,imgOrig2,kp2,matches,None,**draw_p
 #https://machinelearningknowledge.ai/split-and-merge-image-color-space-channels-in-opencv-and-numpy/
 #Split Image with cv2.split
 blue,green,red = cv2.split(img)
+# define channel having all zeros
+zeros = np.zeros(blue.shape, np.uint8)
+# merge zeros to make BGR image
+Blue = cv2.merge([blue,zeros,zeros])
+Green = cv2.merge([zeros,green,zeros])
+Red = cv2.merge([zeros,zeros,red])
 
 #HSV colorspace has three channels – Hue, Saturation, and value
 #creating HSV image
@@ -166,17 +172,17 @@ plt.title('Original'), plt.xticks([]), plt.yticks([])
 
 #Display Red Channel
 plt.subplot(nrows, ncols, 2)
-plt.imshow(cv2.cvtColor(red, cv2.COLOR_BGR2RGB))
+plt.imshow(cv2.cvtColor(Red, cv2.COLOR_BGR2RGB))
 plt.title('Red'), plt.xticks([]), plt.yticks([])
 
 #Display Green Channel
 plt.subplot(nrows, ncols, 3)
-plt.imshow(cv2.cvtColor(green, cv2.COLOR_BGR2RGB))
+plt.imshow(cv2.cvtColor(Green, cv2.COLOR_BGR2RGB))
 plt.title('Green'), plt.xticks([]), plt.yticks([])
 
 #Display Blue Channel
 plt.subplot(nrows, ncols, 4)
-plt.imshow(cv2.cvtColor(blue, cv2.COLOR_BGR2RGB))
+plt.imshow(cv2.cvtColor(Blue, cv2.COLOR_BGR2RGB))
 plt.title('Blue'), plt.xticks([]), plt.yticks([])
 
 #HSV
